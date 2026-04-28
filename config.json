@@ -1,0 +1,99 @@
+{
+  "siteInfo": {
+    "siteName": "KenBarbershop",
+    "tagline": "Premium Barbershop in Prague",
+    "logo": "uploads/logo.png",
+    "faviconUrl": "uploads/favicon.png",
+    "description": "Experience the best barbershop services in Prague with professional barbers and modern facilities."
+  },
+  "menu": {
+    "primary": [
+      { "label": "Domů", "link": "#", "anchor": false },
+      { "label": "O nás", "link": "#o-nas", "anchor": true },
+      { "label": "Ceník", "link": "#cenik", "anchor": true }
+    ],
+    "secondary": [
+      { "label": "Galerie", "link": "#galerie", "anchor": true },
+      { "label": "Kontakt", "link": "#kontakt", "anchor": true }
+    ]
+  },
+  "branches": [
+    {
+      "id": 1,
+      "name": "KenBarbershop - Vintage",
+      "style": "VINTAGE – CLASSIC STYLE",
+      "address": "Bělehradská 288/69",
+      "city": "Prague – 120 00",
+      "mapLink": "https://maps.app.goo.gl/kjkN9wwYf8tw9BDWA",
+      "bookingLink": "https://superhairobarbershop.setmore.com/",
+      "phone": "+420 704 034 567"
+    },
+    {
+      "id": 2,
+      "name": "KenBarbershop - Modern",
+      "style": "MODERN – CONTEMPORARY STYLE",
+      "address": "Bělehradská 235/118",
+      "city": "Prague – 120 00",
+      "mapLink": "https://maps.app.goo.gl/MVHSjCgxDdSrz8hv5",
+      "bookingLink": "https://superhairomodern.setmore.com/",
+      "phone": "+420 732 789 789"
+    }
+  ],
+  "pricing": [
+    { "service": "Men's Haircut", "price": "550 CZK", "category": "basic" },
+    { "service": "Student & Youth (under 24) Haircut", "price": "460 CZK", "category": "basic" },
+    { "service": "Haircut & Beard Trim", "price": "890 CZK", "category": "full" },
+    { "service": "Haircut & Beard Edge Up", "price": "690 CZK", "category": "full" },
+    { "service": "Haircut & Traditional Hot Towel Shave", "price": "1.100 CZK", "category": "premium" },
+    { "service": "Beard Trim", "price": "480 CZK", "category": "basic" },
+    { "service": "Scissor Cut or Long Hair Cut", "price": "650 CZK", "category": "full" },
+    { "service": "Combo Cut & Beard Trim", "price": "650 CZK", "category": "full" }
+  ],
+  "aboutUs": {
+    "title": "About Us",
+    "content": "Welcome to KenBarbershop – Prague's premier barbershop!\n\nKen Vintage – Cozy, classic environment specializing in hair cutting and beard grooming, providing a first-class experience.\n\nKen Modern – Modern and dynamic environment, which in addition to cutting and beard grooming also offers creative experiments with hairstyles through permanent wave and coloring services. To avoid confusion between branches, we recommend carefully checking the address before your visit."
+  },
+  "features": [
+    {
+      "icon": "Group-1875.png",
+      "title": "Online Booking",
+      "description": "Easily book appointments online and change or cancel via email you receive after booking"
+    },
+    {
+      "icon": "Group-1872.png",
+      "title": "Trained Professionals",
+      "description": "Our barbers are trained professionals with many years of experience"
+    },
+    {
+      "icon": "Group-1873.png",
+      "title": "Transparent Pricing",
+      "description": "Our prices are transparent and include everything, no hidden charges"
+    },
+    {
+      "icon": "Group-1874.png",
+      "title": "Free Refreshments",
+      "description": "Enjoy free beverages from our self-service fridge"
+    }
+  ],
+  "reviews": {
+    "rating": "4.9",
+    "count": "2,000+",
+    "source": "Google",
+    "text": "Top #1 Barbershop in Prague according to Google"
+  },
+  "contact": {
+    "email": "info@kenbarbershop.cz",
+    "phone": "+420 704 034 567",
+    "address": "Bělehradská 288/69, Prague 120 00",
+    "hours": {
+      "weekday": "10:00 - 19:00",
+      "weekend": "10:00 - 18:00",
+      "closed": "Monday"
+    }
+  },
+  "social": {
+    "facebook": "https://facebook.com/kenbarbershop",
+    "instagram": "https://instagram.com/kenbarbershop",
+    "google": "https://maps.app.goo.gl/q5LMw1NDTpxexT5W6"
+  }
+}
