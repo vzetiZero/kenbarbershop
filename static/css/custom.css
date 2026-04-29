@@ -198,6 +198,33 @@ textarea {
 	max-height: 72px;
 }
 
+.lang-toggle {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 2000;
+	padding: 10px 16px;
+	border-radius: 999px;
+	background: #111;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	font-weight: 600;
+	box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+}
+
+.lang-toggle:hover {
+	opacity: 0.95;
+}
+
+@media (max-width: 767px) {
+	.lang-toggle {
+		top: 16px;
+		right: 16px;
+	}
+}
+
+
 .elementor-element-ecb3683 {
 	justify-content: center;
 }
