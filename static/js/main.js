@@ -54,7 +54,13 @@
 			"Neděle | 9:45 – 18:15": "Sunday | 9:45 – 18:15"
 		}
 	};
+	translations.en['Dom\u016f'] = 'Home';
+	translations.en['O n\u00e1s'] = 'About';
+	translations.en['Cen\u00edk'] = 'Pricing';
 	translations.cs = Object.fromEntries(Object.entries(translations.en).map(([cs, en]) => [en, cs]));
+	translations.cs.Home = 'Dom\u016f';
+	translations.cs.About = 'O n\u00e1s';
+	translations.cs.Pricing = 'Cen\u00edk';
 	const normalizeText = (text) => text.replace(/\s+/g, ' ').trim();
 	const replaceAllText = (text, search, replace) => {
 		if (!search) return text;
@@ -102,7 +108,39 @@
 			});
 		}
 	};
+	const hydrateMobileMenu = () => {
+		const items = [
+			{ label: 'Dom\u016f', href: 'index.html', active: true },
+			{ label: 'O n\u00e1s', href: 'index.html#o-nas', anchor: true },
+			{ label: 'Cen\u00edk', href: 'index.html#cenik', anchor: true },
+			{ label: 'Galerie', href: 'index.html#galerie', anchor: true },
+			{ label: 'Kontakt', href: 'index.html#kontakt', anchor: true }
+		];
+		const renderMenu = (list, isDropdown) => {
+			if (!list) return;
+			list.innerHTML = '';
+			items.forEach((item) => {
+				const li = document.createElement('li');
+				li.className = 'menu-item menu-item-type-custom menu-item-object-custom';
+				const link = document.createElement('a');
+				link.href = item.href;
+				link.textContent = item.label;
+				link.className = `elementor-item${item.active ? ' elementor-item-active' : ''}${item.anchor ? ' elementor-item-anchor' : ''}`;
+				if (item.active) {
+					link.setAttribute('aria-current', 'page');
+				}
+				if (isDropdown) {
+					link.setAttribute('tabindex', '-1');
+				}
+				li.appendChild(link);
+				list.appendChild(li);
+			});
+		};
+		renderMenu(document.getElementById('menu-1-8a984bc'), false);
+		renderMenu(document.getElementById('menu-2-8a984bc'), true);
+	};
 	const galleryLinks = document.querySelectorAll('[data-elementor-open-lightbox="yes"]');
+	hydrateMobileMenu();
 	initLanguage();
 	const mapLinks = document.querySelectorAll('a[href*="maps.app.goo.gl"], a[href*="google.com/maps"], a[href*="maps.google.com"]');
 	const lightbox = document.createElement('div');
@@ -139,6 +177,14 @@
 			const isOpen = toggle.classList.toggle('is-open');
 			toggle.setAttribute('aria-expanded', String(isOpen));
 			dropdown.setAttribute('aria-hidden', String(!isOpen));
+		});
+
+		dropdown.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', () => {
+				toggle.classList.remove('is-open');
+				toggle.setAttribute('aria-expanded', 'false');
+				dropdown.setAttribute('aria-hidden', 'true');
+			});
 		});
 	});
 
