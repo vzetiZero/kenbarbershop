@@ -217,6 +217,19 @@ textarea {
 	opacity: 0.95;
 }
 
+.language-flag {
+	display: block;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+}
+
+.language-flag--ukraine {
+	background: linear-gradient(to bottom, #0057b7 0 50%, #ffd700 50% 100%);
+}
+
 .cash-payment-note {
 	width: min(100%, 640px);
 	margin: 10px auto 18px;
@@ -965,15 +978,16 @@ textarea {
 		--width: 100%;
 		--justify-content: center;
 		--align-items: center;
-		--gap: 0px 12px;
-		--column-gap: 12px;
+		--gap: 0px 8px;
+		--column-gap: 8px;
 		width: 100%;
-		max-width: 240px;
+		max-width: 288px;
 	}
 
 	.elementor-73 .elementor-element.elementor-element-4e8db9c,
 	.elementor-73 .elementor-element.elementor-element-12c1e6b,
-	.elementor-73 .elementor-element.elementor-element-0371187 {
+	.elementor-73 .elementor-element.elementor-element-0371187,
+	.elementor-73 .elementor-element.elementor-element-ukraine-flag {
 		--width: 64px;
 		width: 64px;
 		flex: 0 0 64px;

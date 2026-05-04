@@ -70,6 +70,82 @@
 	translations.cs['Choose a branch'] = 'Vyberte pobo\u010dku';
 	translations.cs['Ken Barber Interior'] = 'Interi\u00e9r Ken Barber';
 	translations.cs['Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.'] = 'Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it';
+	translations.uk = {};
+	const phraseTranslations = {
+		cs: {
+			home: 'Dom\u016f',
+			about: 'O n\u00e1s',
+			pricing: 'Cen\u00edk',
+			gallery: 'Galerie',
+			contact: 'Kontakt',
+			skip: 'P\u0159ej\u00edt k obsahu',
+			bookNow: 'Rezervace',
+			topRatedGoogle: 'Top #1 Barbershop v Praze podle Googlu',
+			topRated: 'Top #1 Barbershop v Praze podle',
+			interior: 'Interi\u00e9r Ken Barber',
+			shopHaircuts: 'St\u0159ihy',
+			shopHaircutsAlt: 'St\u0159\u00edhy',
+			video: 'Video',
+			branches: 'Na\u0161e pobo\u010dky',
+			branchIntro: 'Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it',
+			languages: 'Jazyky:',
+			writeUs: 'Napi\u0161te n\u00e1m',
+			name: 'Jm\u00e9no & P\u0159\u00edjmen\u00ed',
+			message: 'Zpr\u00e1va',
+			sendMessage: 'Odeslat zpr\u00e1vu'
+		},
+		en: {
+			home: 'Home',
+			about: 'About',
+			pricing: 'Pricing',
+			gallery: 'Gallery',
+			contact: 'Contact',
+			skip: 'Skip to content',
+			bookNow: 'Book now',
+			topRatedGoogle: 'Top #1 Barbershop in Prague according to Google',
+			topRated: 'Top #1 Barbershop in Prague according to',
+			interior: 'Ken Barber Interior',
+			shopHaircuts: 'Haircuts',
+			shopHaircutsAlt: 'Haircuts',
+			video: 'Video',
+			branches: 'Our branches',
+			branchIntro: 'Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.',
+			languages: 'Languages:',
+			writeUs: 'Write to us',
+			name: 'First & Last Name',
+			message: 'Message',
+			sendMessage: 'Send message'
+		},
+		uk: {
+			home: '\u0413\u043e\u043b\u043e\u0432\u043d\u0430',
+			about: '\u041f\u0440\u043e \u043d\u0430\u0441',
+			pricing: '\u041f\u0440\u0430\u0439\u0441',
+			gallery: '\u0413\u0430\u043b\u0435\u0440\u0435\u044f',
+			contact: '\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u0438',
+			skip: '\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u0434\u043e \u0432\u043c\u0456\u0441\u0442\u0443',
+			bookNow: '\u0411\u0440\u043e\u043d\u044e\u0432\u0430\u0442\u0438',
+			topRatedGoogle: '\u0422\u043e\u043f #1 \u0431\u0430\u0440\u0431\u0435\u0440\u0448\u043e\u043f \u0443 \u041f\u0440\u0430\u0437\u0456 \u0437\u0430 \u0432\u0435\u0440\u0441\u0456\u0454\u044e Google',
+			topRated: '\u0422\u043e\u043f #1 \u0431\u0430\u0440\u0431\u0435\u0440\u0448\u043e\u043f \u0443 \u041f\u0440\u0430\u0437\u0456 \u0437\u0430 \u0432\u0435\u0440\u0441\u0456\u0454\u044e',
+			interior: '\u0406\u043d\u0442\u0435\u0440\u02bc\u0454\u0440 Ken Barber',
+			shopHaircuts: '\u0421\u0442\u0440\u0438\u0436\u043a\u0438',
+			shopHaircutsAlt: '\u0421\u0442\u0440\u0438\u0436\u043a\u0438',
+			video: '\u0412\u0456\u0434\u0435\u043e',
+			branches: '\u041d\u0430\u0448\u0456 \u0444\u0456\u043b\u0456\u0457',
+			branchIntro: '\u0427\u0435\u0440\u0435\u0437 \u0432\u0435\u043b\u0438\u043a\u0443 \u0437\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0435\u043d\u0456\u0441\u0442\u044c \u043d\u0430\u0448\u043e\u0457 \u043f\u0435\u0440\u0448\u043e\u0457 \u0444\u0456\u043b\u0456\u0457 Ken Barber \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0454\u043c\u043e \u0431\u0440\u043e\u043d\u044e\u0432\u0430\u0442\u0438 \u0432\u0456\u0437\u0438\u0442 \u0443 \u043d\u0430\u0448\u0456\u0439 \u043d\u043e\u0432\u0456\u0439 \u0444\u0456\u043b\u0456\u0457 Ken Barber Modern, \u044f\u043a\u0430 \u0437\u043d\u0430\u0445\u043e\u0434\u0438\u0442\u044c\u0441\u044f \u043b\u0438\u0448\u0435 \u0437\u0430 \u043a\u0456\u043b\u044c\u043a\u0430 \u043a\u0440\u043e\u043a\u0456\u0432 \u0432\u0456\u0434 \u043f\u0435\u0440\u0448\u043e\u0457. \u0414\u044f\u043a\u0443\u0454\u043c\u043e \u0456 \u0431\u0443\u0434\u0435\u043c\u043e \u0440\u0430\u0434\u0456 \u0432\u0430\u0441 \u0431\u0430\u0447\u0438\u0442\u0438.',
+			languages: '\u041c\u043e\u0432\u0438:',
+			writeUs: '\u041d\u0430\u043f\u0438\u0448\u0456\u0442\u044c \u043d\u0430\u043c',
+			name: "\u0406\u043c'\u044f \u0442\u0430 \u043f\u0440\u0456\u0437\u0432\u0438\u0449\u0435",
+			message: '\u041f\u043e\u0432\u0456\u0434\u043e\u043c\u043b\u0435\u043d\u043d\u044f',
+			sendMessage: '\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438'
+		}
+	};
+	Object.keys(phraseTranslations).forEach((targetLang) => {
+		Object.keys(phraseTranslations).forEach((sourceLang) => {
+			Object.keys(phraseTranslations[sourceLang]).forEach((key) => {
+				translations[targetLang][phraseTranslations[sourceLang][key]] = phraseTranslations[targetLang][key];
+			});
+		});
+	});
 	const structuredTranslations = {
 		cs: {
 			aboutTitle: 'O n\u00e1s',
@@ -166,6 +242,38 @@
 			price450: '450 CZK',
 			price550: '550 CZK',
 			price750: '750 CZK'
+		},
+		uk: {
+			aboutTitle: 'Про нас',
+			aboutBody: '<p>Ласкаво просимо до Ken Barbershop, одного з провідних барбершопів у Празі!</p><p>Ken Barbershop - затишна класична атмосфера, спеціалізація на чоловічих стрижках і голінні бороди, першокласний досвід.</p><p>Ken Barbershop - це місце, де професійне перукарське ремесло поєднується з сучасним стилем. Ми пропонуємо точні стрижки, догляд за бородою та індивідуальний підхід до кожного клієнта. Наша мета - щоб ви виходили впевненими й задоволеними власним виглядом.</p>',
+			cashPaymentNote: 'Ми рекомендуємо оплачувати готівкою. Якщо у вас немає готівки, можна оплатити карткою. Дякуємо.',
+			pricingTitle: 'Прайс',
+			pricingMensHaircut: 'Чоловіча стрижка',
+			pricingHaircutBeard: 'Стрижка та догляд за бородою',
+			pricingKidsHaircut: 'Дитяча стрижка (5-10 років)',
+			pricingBeardTrim: 'Догляд за бородою',
+			pricingLongHair: 'Довге волосся або стрижка лише ножицями',
+			pricingComboVip: 'Combo VIP (стрижка та догляд за бородою + миття волосся + корекція брів)',
+			pricingHaircutWash: 'Стрижка + миття волосся',
+			pricingExtraEyebrows: 'Корекція брів (додатково): +50 CZK',
+			pricingExtraWash: 'Миття волосся (додатково): +100 CZK',
+			pricingExtraBeardColoring: 'Фарбування бороди (додатково): +400 CZK',
+			featurePaymentTitle: 'Спосіб оплати',
+			featurePaymentText: 'Ми рекомендуємо клієнтам оплачувати готівкою. Якщо у вас немає готівки, можна оплатити карткою. Дякуємо.',
+			featureBookingTitle: 'Онлайн бронювання',
+			featureBookingText: 'Запис можна легко забронювати онлайн, а також змінити або скасувати через email, який ви отримаєте після бронювання.',
+			featureProfessionalsTitle: 'Підготовлені професіонали',
+			featureProfessionalsText: 'Наші барбери - підготовлені професіонали з багаторічним досвідом.',
+			featureIncludedTitle: 'Усе включено у вартість',
+			featureIncludedText: 'Наші ціни прозорі та включають усе, без прихованих доплат.',
+			featureRefreshmentsTitle: 'Безкоштовні напої',
+			featureRefreshmentsText: 'Скористайтеся безкоштовними напоями в нашому холодильнику самообслуговування.',
+			price250: '250 CZK',
+			price300: '300 CZK',
+			price350: '350 CZK',
+			price450: '450 CZK',
+			price550: '550 CZK',
+			price750: '750 CZK'
 		}
 	};
 	const normalizeText = (text) => text.replace(/\s+/g, ' ').trim();
@@ -198,9 +306,24 @@
 		const content = {
 			cs: '<p class="contact-payment-notice"><strong>Doporu\u010dujeme z\u00e1kazn\u00edk\u016fm platit v hotovosti. Pokud u sebe nem\u00e1te hotovost, m\u016f\u017eete platit kartou. D\u011bkujeme.</strong></p><p><strong>Telefon:</strong><br>+420 773 919 789</p><p><strong>Otev\u00edrac\u00ed doba:</strong><br>Pond\u011bl\u00ed | 09:00 \u2013 19:30<br>\u00dater\u00fd | 09:00 \u2013 19:30<br>St\u0159eda | 09:00 \u2013 19:30<br>\u010ctvrtek | 09:00 \u2013 19:30<br>P\u00e1tek | 09:00 \u2013 19:30<br>Sobota | 09:00 \u2013 19:30<br>Ned\u011ble | Zav\u0159eno</p><p><strong>Adresa:</strong><br>Seifertova 595/67<br>Praha 3</p>',
 			en: '<p class="contact-payment-notice"><strong>We encourage customers to pay in cash. If you do not have cash with you, you can pay by card. Thank you.</strong></p><p><strong>Phone:</strong><br>+420 773 919 789</p><p><strong>Opening hours:</strong><br>Monday | 09:00 \u2013 19:30<br>Tuesday | 09:00 \u2013 19:30<br>Wednesday | 09:00 \u2013 19:30<br>Thursday | 09:00 \u2013 19:30<br>Friday | 09:00 \u2013 19:30<br>Saturday | 09:00 \u2013 19:30<br>Sunday | Closed</p><p><strong>Address:</strong><br>Seifertova 595/67<br>Praha 3</p>',
-			vi: '<p class="contact-payment-notice"><strong>Ch\u00fang t\u00f4i khuy\u1ebfn kh\u00edch kh\u00e1ch h\u00e0ng thanh to\u00e1n b\u1eb1ng ti\u1ec1n m\u1eb7t. N\u1ebfu kh\u00f4ng mang theo ti\u1ec1n m\u1eb7t, b\u1ea1n c\u00f3 th\u1ec3 thanh to\u00e1n b\u1eb1ng th\u1ebb. Xin c\u1ea3m \u01a1n.</strong></p><p><strong>\u0110i\u1ec7n tho\u1ea1i:</strong><br>+420 773 919 789</p><p><strong>Gi\u1edd m\u1edf c\u1eeda:</strong><br>Th\u1ee9 Hai | 09:00 \u2013 19:30<br>Th\u1ee9 Ba | 09:00 \u2013 19:30<br>Th\u1ee9 T\u01b0 | 09:00 \u2013 19:30<br>Th\u1ee9 N\u0103m | 09:00 \u2013 19:30<br>Th\u1ee9 S\u00e1u | 09:00 \u2013 19:30<br>Th\u1ee9 B\u1ea3y | 09:00 \u2013 19:30<br>Ch\u1ee7 Nh\u1eadt | \u0110\u00f3ng c\u1eeda</p><p><strong>\u0110\u1ecba ch\u1ec9:</strong><br>Seifertova 595/67<br>Praha 3</p>'
+			vi: '<p class="contact-payment-notice"><strong>Ch\u00fang t\u00f4i khuy\u1ebfn kh\u00edch kh\u00e1ch h\u00e0ng thanh to\u00e1n b\u1eb1ng ti\u1ec1n m\u1eb7t. N\u1ebfu kh\u00f4ng mang theo ti\u1ec1n m\u1eb7t, b\u1ea1n c\u00f3 th\u1ec3 thanh to\u00e1n b\u1eb1ng th\u1ebb. Xin c\u1ea3m \u01a1n.</strong></p><p><strong>\u0110i\u1ec7n tho\u1ea1i:</strong><br>+420 773 919 789</p><p><strong>Gi\u1edd m\u1edf c\u1eeda:</strong><br>Th\u1ee9 Hai | 09:00 \u2013 19:30<br>Th\u1ee9 Ba | 09:00 \u2013 19:30<br>Th\u1ee9 T\u01b0 | 09:00 \u2013 19:30<br>Th\u1ee9 N\u0103m | 09:00 \u2013 19:30<br>Th\u1ee9 S\u00e1u | 09:00 \u2013 19:30<br>Th\u1ee9 B\u1ea3y | 09:00 \u2013 19:30<br>Ch\u1ee7 Nh\u1eadt | \u0110\u00f3ng c\u1eeda</p><p><strong>\u0110\u1ecba ch\u1ec9:</strong><br>Seifertova 595/67<br>Praha 3</p>',
+			uk: '<p class="contact-payment-notice"><strong>Ми рекомендуємо клієнтам оплачувати готівкою. Якщо у вас немає готівки, можна оплатити карткою. Дякуємо.</strong></p><p><strong>Телефон:</strong><br>+420 773 919 789</p><p><strong>Години роботи:</strong><br>Понеділок | 09:00 – 19:30<br>Вівторок | 09:00 – 19:30<br>Середа | 09:00 – 19:30<br>Четвер | 09:00 – 19:30<br>П&#39;ятниця | 09:00 – 19:30<br>Субота | 09:00 – 19:30<br>Неділя | Зачинено</p><p><strong>Адреса:</strong><br>Seifertova 595/67<br>Praha 3</p>'
 		};
 		contact.innerHTML = content[lang] || content.cs;
+	};
+	const updateContactForm = (lang) => {
+		const map = phraseTranslations[lang];
+		if (!map) return;
+		const form = document.querySelector('[data-contact-form]');
+		if (!form) return;
+		const nameInput = form.querySelector('#form-field-name');
+		const messageInput = form.querySelector('#form-field-message');
+		const nameLabel = form.querySelector('label[for="form-field-name"]');
+		const messageLabel = form.querySelector('label[for="form-field-message"]');
+		if (nameInput) nameInput.setAttribute('placeholder', map.name);
+		if (messageInput) messageInput.setAttribute('placeholder', map.message);
+		if (nameLabel) nameLabel.textContent = map.name;
+		if (messageLabel) messageLabel.textContent = map.message;
 	};
 	const applyStructuredTranslations = (lang) => {
 		const map = structuredTranslations[lang] || structuredTranslations.cs;
@@ -223,28 +346,30 @@
 		elements.forEach((element) => translateText(element, lang));
 		applyStructuredTranslations(lang);
 		updateBranchContact(lang);
-		document.documentElement.lang = lang === 'vi' ? 'vi' : lang === 'en' ? 'en' : 'cs';
+		updateContactForm(lang);
+		document.documentElement.lang = ['cs', 'en', 'vi', 'uk'].includes(lang) ? lang : 'cs';
 		if (langToggle) {
-			langToggle.textContent = lang === 'en' ? 'CZ' : 'EN';
+			const toggleOrder = ['cs', 'en', 'uk'];
+			const currentIndex = toggleOrder.includes(lang) ? toggleOrder.indexOf(lang) : 0;
+			const nextLang = toggleOrder[(currentIndex + 1) % toggleOrder.length];
+			langToggle.textContent = nextLang === 'cs' ? 'CZ' : nextLang.toUpperCase();
 		}
 	};
 	const setLanguage = (lang) => {
-		const normalized = ['cs', 'en', 'vi'].includes(lang) ? lang : 'cs';
+		const normalized = ['cs', 'en', 'vi', 'uk'].includes(lang) ? lang : 'cs';
 		localStorage.setItem(storageKey, normalized);
 		translatePage(normalized);
 	};
 	const initLanguage = () => {
 		const savedLang = localStorage.getItem(storageKey);
-		const initialLang = savedLang === 'en' ? 'en' : 'cs';
-		if (initialLang === 'en') {
-			translatePage('en');
-		} else {
-			applyStructuredTranslations('cs');
-			updateBranchContact('cs');
-		}
+		const initialLang = ['cs', 'en', 'vi', 'uk'].includes(savedLang) ? savedLang : 'cs';
+		translatePage(initialLang);
 		if (langToggle) {
 			langToggle.addEventListener('click', () => {
-				setLanguage(document.documentElement.lang === 'en' ? 'cs' : 'en');
+				const toggleOrder = ['cs', 'en', 'uk'];
+				const currentLang = document.documentElement.lang;
+				const currentIndex = toggleOrder.includes(currentLang) ? toggleOrder.indexOf(currentLang) : 0;
+				setLanguage(toggleOrder[(currentIndex + 1) % toggleOrder.length]);
 			});
 		}
 		document.querySelectorAll('[data-lang-option]').forEach((option) => {
