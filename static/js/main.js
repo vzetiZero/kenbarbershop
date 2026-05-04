@@ -285,6 +285,7 @@
 		renderMenu(document.getElementById('menu-2-8a984bc'), true);
 	};
 	const galleryLinks = document.querySelectorAll('[data-elementor-open-lightbox="yes"]');
+	const wrapperLinks = document.querySelectorAll('[data-wrapper-href]');
 	hydrateMobileMenu();
 	initLanguage();
 	const contactForm = document.querySelector('[data-contact-form]');
@@ -374,6 +375,23 @@
 	mapLinks.forEach((link) => {
 		link.setAttribute('target', '_blank');
 		link.setAttribute('rel', 'noopener noreferrer');
+	});
+
+	wrapperLinks.forEach((wrapper) => {
+		const href = wrapper.getAttribute('data-wrapper-href');
+		if (!href) return;
+		wrapper.setAttribute('role', 'link');
+		wrapper.setAttribute('tabindex', '0');
+		wrapper.addEventListener('click', (event) => {
+			if (event.target.closest('a')) return;
+			window.open(href, '_blank', 'noopener,noreferrer');
+		});
+		wrapper.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault();
+				window.open(href, '_blank', 'noopener,noreferrer');
+			}
+		});
 	});
 
 	document.querySelectorAll('a[href*="Seifertova%2067"]').forEach((link) => {
