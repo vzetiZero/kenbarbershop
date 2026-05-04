@@ -93,7 +93,29 @@
 <body data-rsssl=1
 	class="home wp-singular page-template page-template-elementor_header_footer page page-id-45 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor theme-hello-elementor hello-elementor-default elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-45">
 
-	<button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+	<div id="lang-switcher" class="lang-switcher">
+		<button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language" aria-expanded="false"
+			aria-controls="lang-menu">
+			<span class="language-flag language-flag--czech" aria-hidden="true"></span>
+		</button>
+		<div id="lang-menu" class="lang-menu" role="menu" hidden>
+			<button class="lang-menu__option" type="button" data-lang-option="cs" aria-label="Czech" role="menuitem">
+				<span class="language-flag language-flag--czech" aria-hidden="true"></span>
+			</button>
+			<button class="lang-menu__option" type="button" data-lang-option="en" aria-label="English" role="menuitem">
+				<span class="language-flag language-flag--english" aria-hidden="true"></span>
+			</button>
+			<button class="lang-menu__option" type="button" data-lang-option="uk" aria-label="Ukrainian" role="menuitem">
+				<span class="language-flag language-flag--ukraine" aria-hidden="true"></span>
+			</button>
+			<button class="lang-menu__option" type="button" data-lang-option="de" aria-label="German" role="menuitem">
+				<span class="language-flag language-flag--germany" aria-hidden="true"></span>
+			</button>
+			<button class="lang-menu__option" type="button" data-lang-option="es" aria-label="Spanish" role="menuitem">
+				<span class="language-flag language-flag--spain" aria-hidden="true"></span>
+			</button>
+		</div>
+	</div>
 
 	<a class="skip-link screen-reader-text" href="#content">Přejít k obsahu</a>
 

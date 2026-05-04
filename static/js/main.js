@@ -1,8 +1,17 @@
 (function () {
 	const menuToggles = document.querySelectorAll('.elementor-menu-toggle');
 	const langToggle = document.getElementById('lang-toggle');
+	const langSwitcher = document.getElementById('lang-switcher');
+	const langMenu = document.getElementById('lang-menu');
 	const storageKey = 'kenbarbershopLang';
 	const supportedLanguages = ['cs', 'en', 'uk', 'de', 'es'];
+	const languageFlagClasses = {
+		cs: 'language-flag--czech',
+		en: 'language-flag--english',
+		uk: 'language-flag--ukraine',
+		de: 'language-flag--germany',
+		es: 'language-flag--spain'
+	};
 	const translations = {
 		"en": {
 			"Přejít k obsahu": "Skip to content",
@@ -394,6 +403,7 @@
 	};
 	const translateText = (element, lang) => {
 		if (!element || element.id === 'lang-toggle') return;
+		if (element.closest('.lang-switcher')) return;
 		if (element.closest('.elementor-element-38a3bfd')) return;
 		if (element.closest('[data-i18n], [data-i18n-html]')) return;
 		let text = normalizeText(element.textContent || '');
@@ -462,11 +472,14 @@
 		updateContactForm(lang);
 		document.documentElement.lang = supportedLanguages.includes(lang) ? lang : 'cs';
 		if (langToggle) {
-			const toggleOrder = supportedLanguages;
-			const currentIndex = toggleOrder.includes(lang) ? toggleOrder.indexOf(lang) : 0;
-			const nextLang = toggleOrder[(currentIndex + 1) % toggleOrder.length];
-			langToggle.textContent = nextLang === 'cs' ? 'CZ' : nextLang.toUpperCase();
+			const flag = langToggle.querySelector('.language-flag');
+			if (flag) {
+				flag.className = `language-flag ${languageFlagClasses[lang] || languageFlagClasses.cs}`;
+			}
 		}
+		document.querySelectorAll('.lang-menu__option').forEach((option) => {
+			option.classList.toggle('is-active', option.getAttribute('data-lang-option') === lang);
+		});
 	};
 	const setLanguage = (lang) => {
 		const normalized = supportedLanguages.includes(lang) ? lang : 'cs';
@@ -478,17 +491,34 @@
 		const initialLang = supportedLanguages.includes(savedLang) ? savedLang : 'cs';
 		translatePage(initialLang);
 		if (langToggle) {
-			langToggle.addEventListener('click', () => {
-				const toggleOrder = supportedLanguages;
-				const currentLang = document.documentElement.lang;
-				const currentIndex = toggleOrder.includes(currentLang) ? toggleOrder.indexOf(currentLang) : 0;
-				setLanguage(toggleOrder[(currentIndex + 1) % toggleOrder.length]);
+			langToggle.addEventListener('click', (event) => {
+				event.stopPropagation();
+				if (!langMenu) return;
+				const isOpen = !langMenu.hidden;
+				langMenu.hidden = isOpen;
+				langToggle.setAttribute('aria-expanded', String(!isOpen));
 			});
 		}
 		document.querySelectorAll('[data-lang-option]').forEach((option) => {
 			option.addEventListener('click', () => {
 				setLanguage(option.getAttribute('data-lang-option'));
+				if (option.closest('.lang-menu') && langMenu && langToggle) {
+					langMenu.hidden = true;
+					langToggle.setAttribute('aria-expanded', 'false');
+				}
 			});
+		});
+		document.addEventListener('click', (event) => {
+			if (!langMenu || !langSwitcher || langMenu.hidden) return;
+			if (!langSwitcher.contains(event.target)) {
+				langMenu.hidden = true;
+				if (langToggle) langToggle.setAttribute('aria-expanded', 'false');
+			}
+		});
+		document.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape' || !langMenu || langMenu.hidden) return;
+			langMenu.hidden = true;
+			if (langToggle) langToggle.setAttribute('aria-expanded', 'false');
 		});
 	};
 	const hydrateMobileMenu = () => {

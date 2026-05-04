@@ -198,23 +198,65 @@ textarea {
 	max-height: 72px;
 }
 
-.lang-toggle {
+.lang-switcher {
 	position: fixed;
 	top: 20px;
 	right: 20px;
 	z-index: 2000;
-	padding: 10px 16px;
-	border-radius: 999px;
+}
+
+.lang-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	border-radius: 10px;
 	background: #111;
-	color: #fff;
 	border: none;
 	cursor: pointer;
-	font-weight: 600;
 	box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
 }
 
 .lang-toggle:hover {
 	opacity: 0.95;
+}
+
+.lang-menu {
+	position: absolute;
+	top: calc(100% + 8px);
+	right: 0;
+	display: grid;
+	gap: 10px;
+	width: 66px;
+	padding: 12px 0;
+	border-radius: 7px;
+	background: #111;
+	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+	justify-items: center;
+}
+
+.lang-menu[hidden] {
+	display: none;
+}
+
+.lang-menu__option {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 24px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	opacity: 0.82;
+}
+
+.lang-menu__option:hover,
+.lang-menu__option.is-active {
+	opacity: 1;
 }
 
 .language-flag {
@@ -224,6 +266,28 @@ textarea {
 	border-radius: 50%;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 	overflow: hidden;
+}
+
+.lang-switcher .language-flag {
+	width: 22px;
+	height: 22px;
+	box-shadow: none;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.lang-menu .language-flag {
+	width: 18px;
+	height: 18px;
+}
+
+.language-flag--czech {
+	background-image: url("../images/wp/2024/11/czech-republic.png");
+}
+
+.language-flag--english {
+	background-image: url("../images/wp/2024/11/united-kingdom.png");
 }
 
 .language-flag--ukraine {
@@ -277,11 +341,16 @@ textarea {
 }
 
 @media (max-width: 767px) {
-	.lang-toggle {
+	.lang-switcher {
 		top: auto;
 		right: 16px;
 		bottom: 16px;
-		padding: 9px 14px;
+	}
+
+	.lang-menu {
+		top: auto;
+		right: 0;
+		bottom: calc(100% + 8px);
 	}
 
 	.cash-payment-note {
