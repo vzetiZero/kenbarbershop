@@ -26,6 +26,7 @@
 			"Adresa:": "Address:",
 			"Ken Barbershop Vintage": "Ken Barbershop Vintage",
 			"Ken Barbershop Modern": "Ken Barbershop Modern",
+			"Interiér Ken Barber": "Ken Barber Interior",
 			"Stříhy": "Haircuts",
 			"SuperHairo Vintage": "SuperHairo Vintage",
 			"SuperHairo Modern": "SuperHairo Modern",
@@ -59,6 +60,7 @@
 	translations.en['Modern\u00ed a dynamick\u00e9 prost\u0159ed\u00ed krom\u011b st\u0159\u00edh\u00e1n\u00ed a \u00fapravy vous\u016f nab\u00edz\u00ed tak\u00e9 kreativn\u00ed experimenty s \u00fa\u010desy d\u00edky slu\u017eb\u00e1m trval\u00e9 a barven\u00ed. P\u0159ed n\u00e1v\u0161t\u011bvou si pros\u00edm pe\u010dliv\u011b zkontrolujte adresu.'] = 'The modern and dynamic environment offers not only haircuts and beard grooming, but also creative hairstyle options through perm and coloring services. Please check the address carefully before your visit.';
 	translations.en['Na\u0161e pobo\u010dky'] = 'Our branches';
 	translations.en['Vyberte pobo\u010dku'] = 'Choose a branch';
+	translations.en['Interi\u00e9r Ken Barber'] = 'Ken Barber Interior';
 	translations.en['Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it'] = 'Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.';
 	translations.en['Vzhledem k velkﾃｩ vytﾃｭﾅｾenosti naﾅ｡ﾃｭ prvni poboﾄ耕y Ken Barber, doporuﾄ講jeme rezervovat termﾃｭn na naﾅ｡ﾃｭ novou poboﾄ耕u Ken Barber Modern, kterﾃ｡ se nachﾃ｡zﾃｭ pouze pﾃ｡r krokﾅｯ od naﾅ｡ﾃｭ prvnﾃｭ. Dﾄ嫐ujeme a budeme se tﾄ崘｡it'] = 'Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.';
 	translations.cs = Object.fromEntries(Object.entries(translations.en).map(([cs, en]) => [en, cs]));
@@ -70,6 +72,7 @@
 	translations.cs['The modern and dynamic environment offers not only haircuts and beard grooming, but also creative hairstyle options through perm and coloring services. Please check the address carefully before your visit.'] = 'Modern\u00ed a dynamick\u00e9 prost\u0159ed\u00ed krom\u011b st\u0159\u00edh\u00e1n\u00ed a \u00fapravy vous\u016f nab\u00edz\u00ed tak\u00e9 kreativn\u00ed experimenty s \u00fa\u010desy d\u00edky slu\u017eb\u00e1m trval\u00e9 a barven\u00ed. P\u0159ed n\u00e1v\u0161t\u011bvou si pros\u00edm pe\u010dliv\u011b zkontrolujte adresu.';
 	translations.cs['Our branches'] = 'Na\u0161e pobo\u010dky';
 	translations.cs['Choose a branch'] = 'Vyberte pobo\u010dku';
+	translations.cs['Ken Barber Interior'] = 'Interi\u00e9r Ken Barber';
 	translations.cs['Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.'] = 'Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it';
 	const normalizeText = (text) => text.replace(/\s+/g, ' ').trim();
 	const replaceAllText = (text, search, replace) => {
