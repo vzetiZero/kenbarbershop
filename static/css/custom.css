@@ -692,6 +692,55 @@ textarea {
 	margin-right: auto;
 }
 
+.elementor-45 .elementor-element.elementor-element-4d0a8e7 > .e-con-inner {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	column-gap: clamp(18px, 2vw, 32px);
+	row-gap: 34px;
+	align-items: start;
+}
+
+.elementor-45 .elementor-element.elementor-element-payment-method,
+.elementor-45 .elementor-element.elementor-element-493c3b0,
+.elementor-45 .elementor-element.elementor-element-8244e79,
+.elementor-45 .elementor-element.elementor-element-315d7f9,
+.elementor-45 .elementor-element.elementor-element-4a54570 {
+	width: 100%;
+	max-width: 100%;
+	min-width: 0;
+	--width: 100%;
+	--align-items: center;
+	text-align: center;
+}
+
+.elementor-element-4d0a8e7 .elementor-heading-title {
+	text-wrap: balance;
+}
+
+@media (max-width: 1180px) and (min-width: 768px) {
+	.elementor-45 .elementor-element.elementor-element-4d0a8e7 > .e-con-inner {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	.elementor-45 .elementor-element.elementor-element-payment-method,
+	.elementor-45 .elementor-element.elementor-element-493c3b0,
+	.elementor-45 .elementor-element.elementor-element-8244e79 {
+		grid-column: span 2;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-315d7f9,
+	.elementor-45 .elementor-element.elementor-element-4a54570 {
+		grid-column: span 3;
+	}
+}
+
+@media (max-width: 767px) {
+	.elementor-45 .elementor-element.elementor-element-4d0a8e7 > .e-con-inner {
+		grid-template-columns: 1fr;
+		row-gap: 28px;
+	}
+}
+
 .elementor-element-video-gallery {
 	padding-top: 24px;
 	padding-bottom: 24px;
