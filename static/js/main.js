@@ -2,6 +2,7 @@
 	const menuToggles = document.querySelectorAll('.elementor-menu-toggle');
 	const langToggle = document.getElementById('lang-toggle');
 	const storageKey = 'kenbarbershopLang';
+	const supportedLanguages = ['cs', 'en', 'uk', 'de', 'es'];
 	const translations = {
 		"en": {
 			"Přejít k obsahu": "Skip to content",
@@ -71,6 +72,8 @@
 	translations.cs['Ken Barber Interior'] = 'Interi\u00e9r Ken Barber';
 	translations.cs['Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.'] = 'Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it';
 	translations.uk = {};
+	translations.de = {};
+	translations.es = {};
 	const phraseTranslations = {
 		cs: {
 			home: 'Dom\u016f',
@@ -115,6 +118,50 @@
 			name: 'First & Last Name',
 			message: 'Message',
 			sendMessage: 'Send message'
+		},
+		de: {
+			home: 'Startseite',
+			about: '\u00dcber uns',
+			pricing: 'Preise',
+			gallery: 'Galerie',
+			contact: 'Kontakt',
+			skip: 'Zum Inhalt springen',
+			bookNow: 'Reservieren',
+			topRatedGoogle: 'Top #1 Barbershop in Prag laut Google',
+			topRated: 'Top #1 Barbershop in Prag laut',
+			interior: 'Ken Barber Interieur',
+			shopHaircuts: 'Haarschnitte',
+			shopHaircutsAlt: 'Haarschnitte',
+			video: 'Video',
+			branches: 'Unsere Filialen',
+			branchIntro: 'Wegen der hohen Auslastung unserer ersten Ken Barber Filiale empfehlen wir, einen Termin in unserer neuen Filiale Ken Barber Modern zu buchen, die nur wenige Schritte von der ersten entfernt ist. Vielen Dank, wir freuen uns auf Sie.',
+			languages: 'Sprachen:',
+			writeUs: 'Schreiben Sie uns',
+			name: 'Vor- und Nachname',
+			message: 'Nachricht',
+			sendMessage: 'Nachricht senden'
+		},
+		es: {
+			home: 'Inicio',
+			about: 'Sobre nosotros',
+			pricing: 'Precios',
+			gallery: 'Galeria',
+			contact: 'Contacto',
+			skip: 'Saltar al contenido',
+			bookNow: 'Reservar',
+			topRatedGoogle: 'Top #1 barberia en Praga segun Google',
+			topRated: 'Top #1 barberia en Praga segun',
+			interior: 'Interior de Ken Barber',
+			shopHaircuts: 'Cortes de pelo',
+			shopHaircutsAlt: 'Cortes de pelo',
+			video: 'Video',
+			branches: 'Nuestras sucursales',
+			branchIntro: 'Debido a la alta demanda en nuestra primera sucursal Ken Barber, recomendamos reservar una cita en nuestra nueva sucursal Ken Barber Modern, que esta a solo unos pasos de la primera. Gracias, esperamos verle pronto.',
+			languages: 'Idiomas:',
+			writeUs: 'Escribanos',
+			name: 'Nombre y apellido',
+			message: 'Mensaje',
+			sendMessage: 'Enviar mensaje'
 		},
 		uk: {
 			home: '\u0413\u043e\u043b\u043e\u0432\u043d\u0430',
@@ -243,6 +290,70 @@
 			price550: '550 CZK',
 			price750: '750 CZK'
 		},
+		de: {
+			aboutTitle: '\u00dcber uns',
+			aboutBody: '<p>Willkommen bei Ken Barbershop, einem der fuehrenden Barbershops in Prag!</p><p>Ken Barbershop bietet eine gemuetliche, klassische Umgebung, spezialisiert auf Haarschnitte und Bartpflege, mit einem erstklassigen Erlebnis.</p><p>Ken Barbershop ist ein Ort, an dem professionelles Barber-Handwerk auf modernen Stil trifft. Wir bieten praezise Schnitte, Bartstyling und persoenliche Betreuung fuer jeden Kunden. Unser Ziel ist, dass Sie selbstbewusst und zufrieden mit Ihrem Aussehen nach Hause gehen.</p>',
+			cashPaymentNote: 'Wir empfehlen die Zahlung in bar. Wenn Sie nicht mit Karte zahlen koennen, danken wir Ihnen.',
+			pricingTitle: 'Preise',
+			pricingMensHaircut: 'Herrenhaarschnitt',
+			pricingHaircutBeard: 'Haarschnitt & Bartpflege',
+			pricingKidsHaircut: 'Kinderhaarschnitt (5-10 Jahre)',
+			pricingBeardTrim: 'Bartpflege',
+			pricingLongHair: 'Langes Haar oder Schnitt nur mit Schere',
+			pricingComboVip: 'Combo VIP (Haarschnitt & Bartpflege + Haarwaesche + Augenbrauenkorrektur)',
+			pricingHaircutWash: 'Haarschnitt + Haarwaesche',
+			pricingExtraEyebrows: 'Augenbrauenkorrektur (extra): +50 CZK',
+			pricingExtraWash: 'Haarwaesche (extra): +100 CZK',
+			pricingExtraBeardColoring: 'Bartfaerbung (extra): +400 CZK',
+			featurePaymentTitle: 'Zahlungsmethode',
+			featurePaymentText: 'Wir empfehlen unseren Kunden, in bar zu bezahlen. Wenn Sie kein Bargeld dabei haben, koennen Sie mit Karte bezahlen. Vielen Dank.',
+			featureBookingTitle: 'Online-Terminbuchung',
+			featureBookingText: 'Termine koennen einfach online gebucht und ueber die E-Mail, die Sie nach der Buchung erhalten, geaendert oder storniert werden.',
+			featureProfessionalsTitle: 'Ausgebildete Profis',
+			featureProfessionalsText: 'Unsere Barbiere sind ausgebildete Profis mit langjaehriger Erfahrung.',
+			featureIncludedTitle: 'Alles im Preis enthalten',
+			featureIncludedText: 'Unsere Preise sind transparent und enthalten alles, ohne versteckte Zuschlaege.',
+			featureRefreshmentsTitle: 'Kostenlose Erfrischungen',
+			featureRefreshmentsText: 'Geniessen Sie kostenlose Getraenke aus unserem Selbstbedienungskuehlschrank.',
+			price250: '250 CZK',
+			price300: '300 CZK',
+			price350: '350 CZK',
+			price450: '450 CZK',
+			price550: '550 CZK',
+			price750: '750 CZK'
+		},
+		es: {
+			aboutTitle: 'Sobre nosotros',
+			aboutBody: '<p>Bienvenido a Ken Barbershop, una de las barberias lideres en Praga.</p><p>Ken Barbershop ofrece un ambiente acogedor y clasico, especializado en cortes de pelo y arreglo de barba, con una experiencia de primera clase.</p><p>Ken Barbershop es un lugar donde la barberia profesional se combina con el estilo moderno. Ofrecemos cortes precisos, arreglo de barba y atencion personal para cada cliente. Nuestro objetivo es que salga con confianza y satisfecho con su imagen.</p>',
+			cashPaymentNote: 'Recomendamos pagar en efectivo. Si no puede pagar con tarjeta, gracias.',
+			pricingTitle: 'Precios',
+			pricingMensHaircut: 'Corte de pelo para hombre',
+			pricingHaircutBeard: 'Corte de pelo y arreglo de barba',
+			pricingKidsHaircut: 'Corte infantil (5-10 anos)',
+			pricingBeardTrim: 'Arreglo de barba',
+			pricingLongHair: 'Pelo largo o corte solo con tijeras',
+			pricingComboVip: 'Combo VIP (corte de pelo y arreglo de barba + lavado + cejas)',
+			pricingHaircutWash: 'Corte de pelo + lavado',
+			pricingExtraEyebrows: 'Arreglo de cejas (extra): +50 CZK',
+			pricingExtraWash: 'Lavado de pelo (extra): +100 CZK',
+			pricingExtraBeardColoring: 'Coloracion de barba (extra): +400 CZK',
+			featurePaymentTitle: 'Metodo de pago',
+			featurePaymentText: 'Recomendamos a los clientes pagar en efectivo. Si no lleva efectivo, puede pagar con tarjeta. Gracias.',
+			featureBookingTitle: 'Reserva online',
+			featureBookingText: 'Las citas se pueden reservar facilmente online y cambiar o cancelar mediante el correo electronico que recibe despues de reservar.',
+			featureProfessionalsTitle: 'Profesionales formados',
+			featureProfessionalsText: 'Nuestros barberos son profesionales formados con muchos anos de experiencia.',
+			featureIncludedTitle: 'Todo incluido en el precio',
+			featureIncludedText: 'Nuestros precios son transparentes e incluyen todo, sin recargos ocultos.',
+			featureRefreshmentsTitle: 'Bebidas gratis',
+			featureRefreshmentsText: 'Disfrute de bebidas gratis de nuestra nevera de autoservicio.',
+			price250: '250 CZK',
+			price300: '300 CZK',
+			price350: '350 CZK',
+			price450: '450 CZK',
+			price550: '550 CZK',
+			price750: '750 CZK'
+		},
 		uk: {
 			aboutTitle: 'Про нас',
 			aboutBody: '<p>Ласкаво просимо до Ken Barbershop, одного з провідних барбершопів у Празі!</p><p>Ken Barbershop - затишна класична атмосфера, спеціалізація на чоловічих стрижках і голінні бороди, першокласний досвід.</p><p>Ken Barbershop - це місце, де професійне перукарське ремесло поєднується з сучасним стилем. Ми пропонуємо точні стрижки, догляд за бородою та індивідуальний підхід до кожного клієнта. Наша мета - щоб ви виходили впевненими й задоволеними власним виглядом.</p>',
@@ -304,6 +415,8 @@
 		const contact = document.querySelector('.elementor-element-38a3bfd');
 		if (!contact) return;
 		const content = {
+			de: '<p class="contact-payment-notice"><strong>Wir empfehlen unseren Kunden, in bar zu bezahlen. Wenn Sie kein Bargeld dabei haben, koennen Sie mit Karte bezahlen. Vielen Dank.</strong></p><p><strong>Telefon:</strong><br>+420 773 919 789</p><p><strong>Oeffnungszeiten:</strong><br>Montag | 09:00 \u2013 19:30<br>Dienstag | 09:00 \u2013 19:30<br>Mittwoch | 09:00 \u2013 19:30<br>Donnerstag | 09:00 \u2013 19:30<br>Freitag | 09:00 \u2013 19:30<br>Samstag | 09:00 \u2013 19:30<br>Sonntag | Geschlossen</p><p><strong>Adresse:</strong><br>Seifertova 595/67<br>Praha 3</p>',
+			es: '<p class="contact-payment-notice"><strong>Recomendamos a los clientes pagar en efectivo. Si no lleva efectivo, puede pagar con tarjeta. Gracias.</strong></p><p><strong>Telefono:</strong><br>+420 773 919 789</p><p><strong>Horario:</strong><br>Lunes | 09:00 \u2013 19:30<br>Martes | 09:00 \u2013 19:30<br>Miercoles | 09:00 \u2013 19:30<br>Jueves | 09:00 \u2013 19:30<br>Viernes | 09:00 \u2013 19:30<br>Sabado | 09:00 \u2013 19:30<br>Domingo | Cerrado</p><p><strong>Direccion:</strong><br>Seifertova 595/67<br>Praha 3</p>',
 			cs: '<p class="contact-payment-notice"><strong>Doporu\u010dujeme z\u00e1kazn\u00edk\u016fm platit v hotovosti. Pokud u sebe nem\u00e1te hotovost, m\u016f\u017eete platit kartou. D\u011bkujeme.</strong></p><p><strong>Telefon:</strong><br>+420 773 919 789</p><p><strong>Otev\u00edrac\u00ed doba:</strong><br>Pond\u011bl\u00ed | 09:00 \u2013 19:30<br>\u00dater\u00fd | 09:00 \u2013 19:30<br>St\u0159eda | 09:00 \u2013 19:30<br>\u010ctvrtek | 09:00 \u2013 19:30<br>P\u00e1tek | 09:00 \u2013 19:30<br>Sobota | 09:00 \u2013 19:30<br>Ned\u011ble | Zav\u0159eno</p><p><strong>Adresa:</strong><br>Seifertova 595/67<br>Praha 3</p>',
 			en: '<p class="contact-payment-notice"><strong>We encourage customers to pay in cash. If you do not have cash with you, you can pay by card. Thank you.</strong></p><p><strong>Phone:</strong><br>+420 773 919 789</p><p><strong>Opening hours:</strong><br>Monday | 09:00 \u2013 19:30<br>Tuesday | 09:00 \u2013 19:30<br>Wednesday | 09:00 \u2013 19:30<br>Thursday | 09:00 \u2013 19:30<br>Friday | 09:00 \u2013 19:30<br>Saturday | 09:00 \u2013 19:30<br>Sunday | Closed</p><p><strong>Address:</strong><br>Seifertova 595/67<br>Praha 3</p>',
 			vi: '<p class="contact-payment-notice"><strong>Ch\u00fang t\u00f4i khuy\u1ebfn kh\u00edch kh\u00e1ch h\u00e0ng thanh to\u00e1n b\u1eb1ng ti\u1ec1n m\u1eb7t. N\u1ebfu kh\u00f4ng mang theo ti\u1ec1n m\u1eb7t, b\u1ea1n c\u00f3 th\u1ec3 thanh to\u00e1n b\u1eb1ng th\u1ebb. Xin c\u1ea3m \u01a1n.</strong></p><p><strong>\u0110i\u1ec7n tho\u1ea1i:</strong><br>+420 773 919 789</p><p><strong>Gi\u1edd m\u1edf c\u1eeda:</strong><br>Th\u1ee9 Hai | 09:00 \u2013 19:30<br>Th\u1ee9 Ba | 09:00 \u2013 19:30<br>Th\u1ee9 T\u01b0 | 09:00 \u2013 19:30<br>Th\u1ee9 N\u0103m | 09:00 \u2013 19:30<br>Th\u1ee9 S\u00e1u | 09:00 \u2013 19:30<br>Th\u1ee9 B\u1ea3y | 09:00 \u2013 19:30<br>Ch\u1ee7 Nh\u1eadt | \u0110\u00f3ng c\u1eeda</p><p><strong>\u0110\u1ecba ch\u1ec9:</strong><br>Seifertova 595/67<br>Praha 3</p>',
@@ -347,26 +460,26 @@
 		applyStructuredTranslations(lang);
 		updateBranchContact(lang);
 		updateContactForm(lang);
-		document.documentElement.lang = ['cs', 'en', 'vi', 'uk'].includes(lang) ? lang : 'cs';
+		document.documentElement.lang = supportedLanguages.includes(lang) ? lang : 'cs';
 		if (langToggle) {
-			const toggleOrder = ['cs', 'en', 'uk'];
+			const toggleOrder = supportedLanguages;
 			const currentIndex = toggleOrder.includes(lang) ? toggleOrder.indexOf(lang) : 0;
 			const nextLang = toggleOrder[(currentIndex + 1) % toggleOrder.length];
 			langToggle.textContent = nextLang === 'cs' ? 'CZ' : nextLang.toUpperCase();
 		}
 	};
 	const setLanguage = (lang) => {
-		const normalized = ['cs', 'en', 'vi', 'uk'].includes(lang) ? lang : 'cs';
+		const normalized = supportedLanguages.includes(lang) ? lang : 'cs';
 		localStorage.setItem(storageKey, normalized);
 		translatePage(normalized);
 	};
 	const initLanguage = () => {
 		const savedLang = localStorage.getItem(storageKey);
-		const initialLang = ['cs', 'en', 'vi', 'uk'].includes(savedLang) ? savedLang : 'cs';
+		const initialLang = supportedLanguages.includes(savedLang) ? savedLang : 'cs';
 		translatePage(initialLang);
 		if (langToggle) {
 			langToggle.addEventListener('click', () => {
-				const toggleOrder = ['cs', 'en', 'uk'];
+				const toggleOrder = supportedLanguages;
 				const currentLang = document.documentElement.lang;
 				const currentIndex = toggleOrder.includes(currentLang) ? toggleOrder.indexOf(currentLang) : 0;
 				setLanguage(toggleOrder[(currentIndex + 1) % toggleOrder.length]);

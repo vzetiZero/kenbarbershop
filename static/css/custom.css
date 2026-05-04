@@ -230,6 +230,41 @@ textarea {
 	background: linear-gradient(to bottom, #0057b7 0 50%, #ffd700 50% 100%);
 }
 
+.language-flag--germany {
+	background: linear-gradient(to bottom, #000 0 33.333%, #dd0000 33.333% 66.666%, #ffce00 66.666% 100%);
+}
+
+.language-flag--spain {
+	background: linear-gradient(to bottom, #aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75% 100%);
+}
+
+.elementor-73 .elementor-element.elementor-element-f60635c {
+	--justify-content: flex-start;
+	--align-items: center;
+	--gap: 0px 8px;
+	--column-gap: 8px;
+	max-width: 352px;
+}
+
+.elementor-73 .elementor-element.elementor-element-4e8db9c,
+.elementor-73 .elementor-element.elementor-element-12c1e6b,
+.elementor-73 .elementor-element.elementor-element-0371187,
+.elementor-73 .elementor-element.elementor-element-ukraine-flag,
+.elementor-73 .elementor-element.elementor-element-germany-flag,
+.elementor-73 .elementor-element.elementor-element-spain-flag {
+	--width: 64px;
+	width: 64px;
+	flex: 0 0 64px;
+}
+
+.elementor-73 .elementor-element.elementor-element-55c48a0 img,
+.elementor-73 .elementor-element.elementor-element-43f4a69 img,
+.elementor-73 .elementor-element.elementor-element-70f801d img {
+	width: 64px;
+	height: 64px;
+	object-fit: contain;
+}
+
 .cash-payment-note {
 	width: min(100%, 640px);
 	margin: 10px auto 18px;
@@ -469,6 +504,12 @@ textarea {
 	flex-direction: column;
 	align-items: center;
 	gap: 16px;
+	padding: 36px 24px;
+	border-radius: 12px;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.82)), url("../../images/shop/anh_cua_hang_2.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .elementor-element-d85b9cb .elementor-element-38a3bfd {
@@ -981,13 +1022,15 @@ textarea {
 		--gap: 0px 8px;
 		--column-gap: 8px;
 		width: 100%;
-		max-width: 288px;
+		max-width: 352px;
 	}
 
 	.elementor-73 .elementor-element.elementor-element-4e8db9c,
 	.elementor-73 .elementor-element.elementor-element-12c1e6b,
 	.elementor-73 .elementor-element.elementor-element-0371187,
-	.elementor-73 .elementor-element.elementor-element-ukraine-flag {
+	.elementor-73 .elementor-element.elementor-element-ukraine-flag,
+	.elementor-73 .elementor-element.elementor-element-germany-flag,
+	.elementor-73 .elementor-element.elementor-element-spain-flag {
 		--width: 64px;
 		width: 64px;
 		flex: 0 0 64px;
