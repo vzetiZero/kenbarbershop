@@ -73,7 +73,7 @@
 	const structuredTranslations = {
 		cs: {
 			aboutTitle: 'O n\u00e1s',
-			aboutBody: '<p>V\u00edtejte v Ken Barbershop, p\u0159edn\u00edm holi\u010dstv\u00ed v Praze!</p><p>Ken Barbershop nab\u00edz\u00ed \u00fatuln\u00e9 a klasick\u00e9 prost\u0159ed\u00ed, specializuje se na st\u0159ih vlas\u016f a \u00fapravu vous\u016f a poskytuje prvot\u0159\u00eddn\u00ed z\u00e1\u017eitek.</p><p>Ken Barbershop je m\u00edstem, kde se profesion\u00e1ln\u00ed barbering spojuje s modern\u00edm stylem. Nab\u00edz\u00edme precizn\u00ed st\u0159ihy, \u00fapravu vous\u016f a osobn\u00ed p\u0159\u00edstup ke ka\u017ed\u00e9mu z\u00e1kazn\u00edkovi. Na\u0161\u00edm c\u00edlem je, abyste odch\u00e1zeli sebev\u011bdom\u00ed a spokojen\u00ed se sv\u00fdm vzhledem.</p>',
+			aboutBody: '<p>V\u00edtejte v Ken Barbershop, p\u0159edn\u00edm holi\u010dstv\u00ed v Praze!</p><p>Ken Barbershop - \u00datuln\u00e9, klasick\u00e9 prost\u0159ed\u00ed, specializuj\u00edc\u00ed se na st\u0159ih vlas\u016f a holen\u00ed vous\u016f, poskytuj\u00edc\u00ed prvot\u0159\u00eddn\u00ed z\u00e1\u017eitek.</p><p>Ken Barbershop je m\u00edsto, kde se propojuje profesion\u00e1ln\u00ed holi\u010dsk\u00e9 \u0159emeslo s modern\u00edm stylem. Nab\u00edz\u00edme precizn\u00ed st\u0159ihy, \u00fapravu vous\u016f a osobn\u00ed p\u0159\u00edstup ke ka\u017ed\u00e9mu z\u00e1kazn\u00edkovi. Na\u0161\u00edm c\u00edlem je, abyste odch\u00e1zeli sebev\u011bdom\u00ed a spokojen\u00ed s vlastn\u00edm vzhledem.</p>',
 			cashPaymentNote: 'Doporu\u010dujeme platbu v hotovosti. A pokud nem\u016f\u017eete zaplatit kartou, d\u011bkujeme.',
 			pricingTitle: 'Cen\u00edk',
 			pricingMensHaircut: 'St\u0159ih vlas\u016f',
