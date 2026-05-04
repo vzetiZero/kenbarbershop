@@ -496,6 +496,25 @@ textarea {
 	border-radius: 0;
 }
 
+@media (min-width: 768px) {
+	.elementor-45 .elementor-element.elementor-element-840a3a1 {
+		--min-height: 420px;
+		--justify-content: center;
+		--padding-top: 56px;
+		--padding-bottom: 56px;
+		--padding-left: 0px;
+		--padding-right: 0px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-840a3a1 > .e-con-inner {
+		gap: 18px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-c59074b {
+		margin-bottom: 0;
+	}
+}
+
 .elementor-element-4d0a8e7 .elementor-widget-text-editor,
 .elementor-element-4d0a8e7 .elementor-widget-text-editor p,
 .elementor-element-4d0a8e7 .elementor-widget-text-editor span {
