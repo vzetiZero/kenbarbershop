@@ -1130,7 +1130,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="elementor-element elementor-element-c265593 e-flex e-con-boxed e-con e-parent"
+						<!-- <div class="elementor-element elementor-element-c265593 e-flex e-con-boxed e-con e-parent"
 							data-id="c265593" data-element_type="container" data-e-type="container" id="kontakt">
 							<div class="e-con-inner">
 								<div class="elementor-element elementor-element-148964d elementor-widget elementor-widget-heading"
@@ -1146,7 +1146,7 @@
 										nachází pouze pár kroků od naší první. Děkujeme a budeme se těšit</p>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<div class="elementor-element elementor-element-1e85c06 e-flex e-con-boxed e-con e-parent"
 							data-id="1e85c06" data-element_type="container" data-e-type="container">
 							
@@ -1397,20 +1397,14 @@
 												data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
 												data-widget_type="form.default">
 												<form class="elementor-form" method="post" name="New Form"
-													aria-label="New Form" action="https://formsubmit.co/kenbarbershopcz@gmail.com">
-													<input type="hidden" name="post_id" value="73" />
-													<input type="hidden" name="form_id" value="934fa78" />
-													<input type="hidden" name="referer_title"
-														value="Kategorie produktu  Barber" />
-
-
+													aria-label="New Form" data-contact-form>
 													<div class="elementor-form-fields-wrapper elementor-labels-">
-														<div 66789o
+														<div
 															class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-50 elementor-field-required">
 															<label for="form-field-name"
 																class="elementor-field-label elementor-screen-only">
 																Jméno & Příjmení </label>
-															<input size="1" type="text" name="form_fields[name]"
+															<input size="1" type="text" name="name"
 																id="form-field-name"
 																class="elementor-field elementor-size-sm  elementor-field-textual"
 																placeholder="Jméno &amp; Příjmení" required="required">
@@ -1420,7 +1414,7 @@
 															<label for="form-field-email"
 																class="elementor-field-label elementor-screen-only">
 																E-mail </label>
-															<input size="1" type="email" name="form_fields[email]"
+															<input size="1" type="email" name="email"
 																id="form-field-email"
 																class="elementor-field elementor-size-sm  elementor-field-textual"
 																placeholder="E-mail" required="required">
@@ -1432,7 +1426,7 @@
 																Zpráva </label>
 															<textarea
 																class="elementor-field-textual elementor-field  elementor-size-sm"
-																name="form_fields[message]" id="form-field-message"
+																name="message" id="form-field-message"
 																rows="7" placeholder="Zpráva"
 																required="required"></textarea>
 														</div>
@@ -1446,6 +1440,7 @@
 																</span>
 															</button>
 														</div>
+														<p class="contact-form-status" data-contact-form-status></p>
 													</div>
 												</form>
 											</div>

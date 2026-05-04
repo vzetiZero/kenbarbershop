@@ -166,6 +166,7 @@
 	const galleryLinks = document.querySelectorAll('[data-elementor-open-lightbox="yes"]');
 	hydrateMobileMenu();
 	initLanguage();
+	const contactForm = document.querySelector('[data-contact-form]');
 	const mapLinks = document.querySelectorAll('a[href*="maps.app.goo.gl"], a[href*="google.com/maps"], a[href*="maps.google.com"]');
 	const lightbox = document.createElement('div');
 	const lightboxImage = document.createElement('img');
@@ -190,6 +191,32 @@
 		lightboxImage.removeAttribute('alt');
 		document.body.style.overflow = '';
 	};
+
+	if (contactForm) {
+		const status = contactForm.querySelector('[data-contact-form-status]');
+		contactForm.addEventListener('submit', (event) => {
+			event.preventDefault();
+
+			if (!contactForm.reportValidity()) {
+				return;
+			}
+
+			const formData = new FormData(contactForm);
+			const name = String(formData.get('name') || '').trim();
+			const email = String(formData.get('email') || '').trim();
+			const message = String(formData.get('message') || '').trim();
+			const subject = encodeURIComponent(`Zpráva z webu Ken Barbershop - ${name || 'Kontakt'}`);
+			const body = encodeURIComponent(
+				`Jméno: ${name}\nE-mail: ${email}\n\nZpráva:\n${message}`
+			);
+
+			window.location.href = `mailto:kenbarbershopcz@gmail.com?subject=${subject}&body=${body}`;
+
+			if (status) {
+				status.textContent = 'Otevřeli jsme e-mailovou aplikaci. Zkontrolujte zprávu a odešlete ji.';
+			}
+		});
+	}
 
 	menuToggles.forEach((toggle) => {
 		const dropdown = toggle.nextElementSibling;

@@ -570,6 +570,14 @@ textarea {
 	transform: scale(1.04);
 }
 
+.contact-form-status {
+	width: 100%;
+	margin: 2px 5px 0;
+	font-size: 13px;
+	line-height: 1.4;
+	color: #ffffff;
+}
+
 .elementor-element-977a217 .elementor-gallery__container {
 	display: grid !important;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -725,8 +733,79 @@ textarea {
 		max-width: none;
 	}
 
+	.elementor-45 .elementor-element.elementor-element-840a3a1 {
+		--min-height: auto;
+		--padding-top: 34px;
+		--padding-bottom: 32px;
+		--padding-left: 18px;
+		--padding-right: 18px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-840a3a1 > .e-con-inner {
+		gap: 18px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-c59074b {
+		margin-bottom: 4px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-74d3523 {
+		--width: 78%;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-2109fda,
+	.elementor-45 .elementor-element.elementor-element-a5188c7,
+	.elementor-45 .elementor-element.elementor-element-f2c07dc {
+		--spacer-size: 12px;
+	}
+
 	.elementor-45 .elementor-element.elementor-element-5fc04af {
 		--spacer-size: 8px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-b48375f {
+		--padding-top: 18px;
+		--padding-bottom: 18px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-c5de495 {
+		--gap: 8px 0px;
+		--row-gap: 8px;
+	}
+
+	.elementor-element-c5de495 .elementor-element-8a77a00 {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-4d0a8e7 {
+		--padding-top: 34px;
+		--padding-bottom: 34px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-4d0a8e7 > .e-con-inner {
+		row-gap: 34px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-493c3b0,
+	.elementor-45 .elementor-element.elementor-element-8244e79,
+	.elementor-45 .elementor-element.elementor-element-315d7f9,
+	.elementor-45 .elementor-element.elementor-element-4a54570 {
+		--gap: 10px 0px;
+		--row-gap: 10px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-87772ff img,
+	.elementor-45 .elementor-element.elementor-element-9ff0f97 img,
+	.elementor-45 .elementor-element.elementor-element-53299c1 img,
+	.elementor-45 .elementor-element.elementor-element-ebbe6a0 img {
+		width: 24%;
+		max-width: 74px;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-18400ff {
+		--padding-top: 18px;
+		--padding-bottom: 10px;
 	}
 
 	.elementor-73 .elementor-element.elementor-element-acea1ce {
