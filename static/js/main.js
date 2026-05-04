@@ -24,11 +24,8 @@
 			"Telefon:": "Phone:",
 			"Otevírací doba:": "Opening hours:",
 			"Adresa:": "Address:",
-			"Vítejte v Ken Barbershop  Epředním holičství v Praze!": "Welcome to Ken Barbershop — Prague's premier barbershop!",
 			"Ken Barbershop Vintage": "Ken Barbershop Vintage",
-			"Ken Barbershop Vintage  EÚtulné, klasické prostředí, specializující se na střih vlasů a holení vousů, poskytující prvotřídní zážitek.": "Ken Barbershop Vintage — A warm, classic atmosphere specializing in haircuts and beard grooming, delivering a premium experience.",
 			"Ken Barbershop Modern": "Ken Barbershop Modern",
-			"Ken Barbershop Modern  EModerní a dynamické prostředí, které kromāEstříhání a úpravy vousů nabízí i kreativní experimenty s účesy díky službám trvalé a barvení. Abyste předešli záměně mezi pobočkami, doporučujeme si před návštěvou pečlivě zkontrolovat adresu.": "Ken Barbershop Modern — A modern and dynamic environment that, in addition to haircuts and beard grooming, offers creative hairstyle experiments with perm and coloring services. To avoid confusion between branches, we recommend carefully checking the address before your visit.",
 			"Stříhy": "Haircuts",
 			"SuperHairo Vintage": "SuperHairo Vintage",
 			"SuperHairo Modern": "SuperHairo Modern",
@@ -57,6 +54,9 @@
 	translations.en['Dom\u016f'] = 'Home';
 	translations.en['O n\u00e1s'] = 'About';
 	translations.en['Cen\u00edk'] = 'Pricing';
+	translations.en['V\u00edtejte v Ken Barbershop, p\u0159edn\u00edm holi\u010dstv\u00ed v Praze!'] = 'Welcome to Ken Barbershop, a leading barbershop in Prague!';
+	translations.en['Ken Barbershop nab\u00edz\u00ed \u00fatuln\u00e9 a klasick\u00e9 prost\u0159ed\u00ed, specializuje se na st\u0159ih vlas\u016f a \u00fapravu vous\u016f a poskytuje prvot\u0159\u00eddn\u00ed z\u00e1\u017eitek.'] = 'Ken Barbershop offers a warm, classic atmosphere, specializes in haircuts and beard grooming, and delivers a premium experience.';
+	translations.en['Modern\u00ed a dynamick\u00e9 prost\u0159ed\u00ed krom\u011b st\u0159\u00edh\u00e1n\u00ed a \u00fapravy vous\u016f nab\u00edz\u00ed tak\u00e9 kreativn\u00ed experimenty s \u00fa\u010desy d\u00edky slu\u017eb\u00e1m trval\u00e9 a barven\u00ed. P\u0159ed n\u00e1v\u0161t\u011bvou si pros\u00edm pe\u010dliv\u011b zkontrolujte adresu.'] = 'The modern and dynamic environment offers not only haircuts and beard grooming, but also creative hairstyle options through perm and coloring services. Please check the address carefully before your visit.';
 	translations.en['Na\u0161e pobo\u010dky'] = 'Our branches';
 	translations.en['Vyberte pobo\u010dku'] = 'Choose a branch';
 	translations.en['Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it'] = 'Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.';
@@ -65,6 +65,9 @@
 	translations.cs.Home = 'Dom\u016f';
 	translations.cs.About = 'O n\u00e1s';
 	translations.cs.Pricing = 'Cen\u00edk';
+	translations.cs['Welcome to Ken Barbershop, a leading barbershop in Prague!'] = 'V\u00edtejte v Ken Barbershop, p\u0159edn\u00edm holi\u010dstv\u00ed v Praze!';
+	translations.cs['Ken Barbershop offers a warm, classic atmosphere, specializes in haircuts and beard grooming, and delivers a premium experience.'] = 'Ken Barbershop nab\u00edz\u00ed \u00fatuln\u00e9 a klasick\u00e9 prost\u0159ed\u00ed, specializuje se na st\u0159ih vlas\u016f a \u00fapravu vous\u016f a poskytuje prvot\u0159\u00eddn\u00ed z\u00e1\u017eitek.';
+	translations.cs['The modern and dynamic environment offers not only haircuts and beard grooming, but also creative hairstyle options through perm and coloring services. Please check the address carefully before your visit.'] = 'Modern\u00ed a dynamick\u00e9 prost\u0159ed\u00ed krom\u011b st\u0159\u00edh\u00e1n\u00ed a \u00fapravy vous\u016f nab\u00edz\u00ed tak\u00e9 kreativn\u00ed experimenty s \u00fa\u010desy d\u00edky slu\u017eb\u00e1m trval\u00e9 a barven\u00ed. P\u0159ed n\u00e1v\u0161t\u011bvou si pros\u00edm pe\u010dliv\u011b zkontrolujte adresu.';
 	translations.cs['Our branches'] = 'Na\u0161e pobo\u010dky';
 	translations.cs['Choose a branch'] = 'Vyberte pobo\u010dku';
 	translations.cs['Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.'] = 'Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it';

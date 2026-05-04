@@ -287,11 +287,33 @@ textarea {
 	max-width: 320px;
 	margin-left: auto;
 	margin-right: auto;
+	color: #111;
+	font-size: clamp(18px, 2vw, 24px);
+	font-weight: 700;
+	line-height: 1.35;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .elementor-element-ecb3683 .elementor-element-404ef38,
 .elementor-element-ecb3683 .elementor-element-b95ce80 {
 	justify-content: center;
+}
+
+.elementor-element-ecb3683 .elementor-element-b95ce80 h5 {
+	margin: 0;
+}
+
+.elementor-element-ecb3683 .elementor-element-b95ce80 a {
+	color: #0877d8;
+	font-size: clamp(22px, 2.5vw, 30px);
+	font-weight: 800;
+	line-height: 1.2;
+	text-decoration: none;
+}
+
+.elementor-element-ecb3683 .elementor-element-b95ce80 a:hover {
+	color: #005fae;
+	text-decoration: underline;
 }
 
 @media (max-width: 767px) {
@@ -499,6 +521,55 @@ textarea {
 	text-align: center;
 }
 
+.elementor-element-b48375f > .e-con-inner {
+	align-items: stretch;
+}
+
+.elementor-element-b48375f .elementor-element-a7ce55c,
+.elementor-element-b48375f .elementor-element-c5de495 {
+	align-self: stretch;
+}
+
+.elementor-element-b48375f .elementor-element-0a48b2f {
+	height: 100%;
+	grid-auto-rows: 1fr;
+	align-content: stretch;
+}
+
+.elementor-element-b48375f .elementor-element-0a48b2f .elementor-widget-image,
+.elementor-element-b48375f .elementor-element-0a48b2f .elementor-widget-container {
+	height: 100%;
+}
+
+.elementor-element-b48375f .elementor-element-0a48b2f img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.elementor-element-c5de495 .elementor-element-8a77a00 {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) max-content;
+	column-gap: 18px;
+	align-items: start;
+	width: 100%;
+}
+
+.elementor-element-c5de495 .elementor-element-2ae0127 {
+	min-width: 0;
+}
+
+.elementor-element-c5de495 .elementor-element-cdf1a9c {
+	justify-self: end;
+	min-width: 58px;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.elementor-element-c5de495 .elementor-element-cdf1a9c p {
+	white-space: nowrap;
+}
+
 .static-video-gallery {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -539,6 +610,15 @@ textarea {
 		margin-left: auto;
 		margin-right: auto;
 		line-height: 1.45;
+	}
+
+	.elementor-element-c5de495 .elementor-element-8a77a00 {
+		grid-template-columns: minmax(0, 1fr) auto;
+		column-gap: 12px;
+	}
+
+	.elementor-element-c5de495 .elementor-element-cdf1a9c {
+		min-width: 54px;
 	}
 
 	.static-video-gallery {
