@@ -57,10 +57,17 @@
 	translations.en['Dom\u016f'] = 'Home';
 	translations.en['O n\u00e1s'] = 'About';
 	translations.en['Cen\u00edk'] = 'Pricing';
+	translations.en['Na\u0161e pobo\u010dky'] = 'Our branches';
+	translations.en['Vyberte pobo\u010dku'] = 'Choose a branch';
+	translations.en['Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it'] = 'Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.';
+	translations.en['Vzhledem k velkﾃｩ vytﾃｭﾅｾenosti naﾅ｡ﾃｭ prvni poboﾄ耕y Ken Barber, doporuﾄ講jeme rezervovat termﾃｭn na naﾅ｡ﾃｭ novou poboﾄ耕u Ken Barber Modern, kterﾃ｡ se nachﾃ｡zﾃｭ pouze pﾃ｡r krokﾅｯ od naﾅ｡ﾃｭ prvnﾃｭ. Dﾄ嫐ujeme a budeme se tﾄ崘｡it'] = 'Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.';
 	translations.cs = Object.fromEntries(Object.entries(translations.en).map(([cs, en]) => [en, cs]));
 	translations.cs.Home = 'Dom\u016f';
 	translations.cs.About = 'O n\u00e1s';
 	translations.cs.Pricing = 'Cen\u00edk';
+	translations.cs['Our branches'] = 'Na\u0161e pobo\u010dky';
+	translations.cs['Choose a branch'] = 'Vyberte pobo\u010dku';
+	translations.cs['Due to the high demand at our first Ken Barber branch, we recommend booking an appointment at our new Ken Barber Modern branch, which is only a few steps away from the first one. Thank you, and we look forward to seeing you.'] = 'Vzhledem k velk\u00e9 vyt\u00ed\u017eenosti na\u0161\u00ed prvni pobo\u010dky Ken Barber, doporu\u010dujeme rezervovat term\u00edn na na\u0161\u00ed novou pobo\u010dku Ken Barber Modern, kter\u00e1 se nach\u00e1z\u00ed pouze p\u00e1r krok\u016f od na\u0161\u00ed prvn\u00ed. D\u011bkujeme a budeme se t\u011b\u0161it';
 	const normalizeText = (text) => text.replace(/\s+/g, ' ').trim();
 	const replaceAllText = (text, search, replace) => {
 		if (!search) return text;
@@ -68,6 +75,7 @@
 	};
 	const translateText = (element, lang) => {
 		if (!element || element.id === 'lang-toggle') return;
+		if (element.closest('.elementor-element-38a3bfd')) return;
 		let text = normalizeText(element.textContent || '');
 		const map = translations[lang];
 		if (!map) return;
@@ -83,9 +91,17 @@
 			element.textContent = text;
 		}
 	};
+	const updateBranchContact = (lang) => {
+		const contact = document.querySelector('.elementor-element-38a3bfd');
+		if (!contact) return;
+		contact.innerHTML = lang === 'en'
+			? '<p><strong>Phone:</strong><br>+420 773 919 789</p><p><strong>Opening hours:</strong><br>Monday | 09:00 \u2013 19:30<br>Tuesday | 09:00 \u2013 19:30<br>Wednesday | 09:00 \u2013 19:30<br>Thursday | 09:00 \u2013 19:30<br>Friday | 09:00 \u2013 19:30<br>Saturday | 09:00 \u2013 19:30<br>Sunday | Closed</p><p><strong>Address:</strong><br>B\u011blehradsk\u00e1 288/69<br>Praha \u2013 120 00</p>'
+			: '<p><strong>Telefon:</strong><br>+420 773 919 789</p><p><strong>Otev\u00edrac\u00ed doba:</strong><br>Pond\u011bl\u00ed | 09:00 \u2013 19:30<br>\u00dater\u00fd | 09:00 \u2013 19:30<br>St\u0159eda | 09:00 \u2013 19:30<br>\u010ctvrtek | 09:00 \u2013 19:30<br>P\u00e1tek | 09:00 \u2013 19:30<br>Sobota | 09:00 \u2013 19:30<br>Ned\u011ble | Zav\u0159eno</p><p><strong>Adresa:</strong><br>B\u011blehradsk\u00e1 288/69<br>Praha \u2013 120 00</p>';
+	};
 	const translatePage = (lang) => {
 		const elements = document.querySelectorAll('a, button, span, h1, h2, h3, h4, h5, h6, p, strong');
 		elements.forEach((element) => translateText(element, lang));
+		updateBranchContact(lang);
 		document.documentElement.lang = lang === 'en' ? 'en' : 'cs';
 		if (langToggle) {
 			langToggle.textContent = lang === 'en' ? 'CZ' : 'EN';
@@ -101,6 +117,8 @@
 		const initialLang = savedLang === 'en' ? 'en' : 'cs';
 		if (initialLang === 'en') {
 			translatePage('en');
+		} else {
+			updateBranchContact('cs');
 		}
 		if (langToggle) {
 			langToggle.addEventListener('click', () => {
