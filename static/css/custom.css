@@ -612,6 +612,96 @@ textarea {
 		line-height: 1.45;
 	}
 
+	.elementor-element-b1eadb5 {
+		display: flex !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		justify-content: center !important;
+		flex-wrap: nowrap !important;
+		gap: 8px;
+		width: 100%;
+	}
+
+	.elementor-element-b1eadb5 .elementor-element-54916ff,
+	.elementor-element-b1eadb5 .elementor-element-f8e5d0f {
+		flex: 0 0 auto;
+		width: auto !important;
+		max-width: none !important;
+	}
+
+	.elementor-element-b1eadb5 .elementor-element-54916ff .elementor-heading-title {
+		margin: 0;
+		line-height: 1;
+	}
+
+	.elementor-element-b1eadb5 .elementor-element-f8e5d0f img {
+		width: min(150px, 44vw) !important;
+		max-width: none;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-5fc04af {
+		--spacer-size: 18px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-acea1ce {
+		--padding-top: 8px;
+		--padding-bottom: 10px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-95dc3c6 img {
+		width: 24% !important;
+		max-width: 96px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-5281c0e {
+		--gap: 22px 0px;
+		--row-gap: 22px;
+		--padding-top: 24px;
+		--padding-bottom: 28px;
+		--padding-left: 28px;
+		--padding-right: 28px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-a303413 {
+		--gap: 10px 0px;
+		--row-gap: 10px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-9e2152c {
+		--justify-content: center;
+		--gap: 6px 10px;
+		--row-gap: 6px;
+		--column-gap: 10px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-9d81c74 {
+		margin-bottom: 2px;
+		text-align: center;
+		font-size: 20px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-f60635c {
+		--width: 58%;
+		--justify-content: center;
+		--gap: 0px 8px;
+		--column-gap: 8px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-4e8db9c,
+	.elementor-73 .elementor-element.elementor-element-12c1e6b,
+	.elementor-73 .elementor-element.elementor-element-0371187 {
+		--width: 22%;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-2195b9d {
+		--gap: 10px 0px;
+		--row-gap: 10px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-1dbd2e1 {
+		margin-bottom: 0;
+	}
+
 	.elementor-element-c5de495 .elementor-element-8a77a00 {
 		grid-template-columns: minmax(0, 1fr) auto;
 		column-gap: 12px;
