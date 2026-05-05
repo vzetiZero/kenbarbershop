@@ -302,12 +302,16 @@ textarea {
 	background: linear-gradient(to bottom, #aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75% 100%);
 }
 
+.language-flag--russia {
+	background: linear-gradient(to bottom, #fff 0 33.333%, #0039a6 33.333% 66.666%, #d52b1e 66.666% 100%);
+}
+
 .elementor-73 .elementor-element.elementor-element-f60635c {
 	--justify-content: flex-start;
 	--align-items: center;
 	--gap: 0px 8px;
 	--column-gap: 8px;
-	max-width: 352px;
+	max-width: 432px;
 }
 
 .elementor-73 .elementor-element.elementor-element-4e8db9c,
@@ -315,7 +319,8 @@ textarea {
 .elementor-73 .elementor-element.elementor-element-0371187,
 .elementor-73 .elementor-element.elementor-element-ukraine-flag,
 .elementor-73 .elementor-element.elementor-element-germany-flag,
-.elementor-73 .elementor-element.elementor-element-spain-flag {
+.elementor-73 .elementor-element.elementor-element-spain-flag,
+.elementor-73 .elementor-element.elementor-element-russia-flag {
 	--width: 64px;
 	width: 64px;
 	flex: 0 0 64px;
@@ -323,10 +328,58 @@ textarea {
 
 .elementor-73 .elementor-element.elementor-element-55c48a0 img,
 .elementor-73 .elementor-element.elementor-element-43f4a69 img,
-.elementor-73 .elementor-element.elementor-element-70f801d img {
+.elementor-73 .elementor-element.elementor-element-70f801d img,
+.elementor-73 .elementor-element.elementor-element-f60635c .language-flag {
 	width: 64px;
 	height: 64px;
 	object-fit: contain;
+}
+
+@media (min-width: 768px) {
+	.elementor-73 .elementor-element.elementor-element-f60635c {
+		--footer-flag-size: clamp(40px, 3.6vw, 56px);
+		display: grid !important;
+		grid-template-columns: repeat(6, var(--footer-flag-size));
+		gap: 12px;
+		width: max-content;
+		max-width: 100%;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-f60635c > .elementor-element {
+		--width: var(--footer-flag-size);
+		width: var(--footer-flag-size) !important;
+		height: var(--footer-flag-size);
+		flex: 0 0 var(--footer-flag-size);
+		align-items: center;
+		justify-content: center;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-f60635c .elementor-widget,
+	.elementor-73 .elementor-element.elementor-element-f60635c .elementor-widget-container {
+		width: var(--footer-flag-size) !important;
+		height: var(--footer-flag-size);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-f60635c img,
+	.elementor-73 .elementor-element.elementor-element-f60635c .language-flag {
+		width: var(--footer-flag-size) !important;
+		min-width: var(--footer-flag-size);
+		max-width: var(--footer-flag-size);
+		height: var(--footer-flag-size) !important;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		display: block;
+		object-fit: contain;
+	}
+}
+
+@media (max-width: 1080px) and (min-width: 768px) {
+	.elementor-73 .elementor-element.elementor-element-f60635c {
+		grid-template-columns: repeat(3, var(--footer-flag-size));
+	}
 }
 
 .cash-payment-note {
@@ -1140,7 +1193,10 @@ textarea {
 		--gap: 0px 8px;
 		--column-gap: 8px;
 		width: 100%;
-		max-width: 352px;
+		display: grid !important;
+		grid-template-columns: repeat(3, 64px);
+		justify-content: center;
+		max-width: 232px;
 	}
 
 	.elementor-73 .elementor-element.elementor-element-4e8db9c,
@@ -1148,7 +1204,8 @@ textarea {
 	.elementor-73 .elementor-element.elementor-element-0371187,
 	.elementor-73 .elementor-element.elementor-element-ukraine-flag,
 	.elementor-73 .elementor-element.elementor-element-germany-flag,
-	.elementor-73 .elementor-element.elementor-element-spain-flag {
+	.elementor-73 .elementor-element.elementor-element-spain-flag,
+	.elementor-73 .elementor-element.elementor-element-russia-flag {
 		--width: 64px;
 		width: 64px;
 		flex: 0 0 64px;
