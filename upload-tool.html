@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Upload - Ken Barbershop</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #c4a052;
+        }
+        .card {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            color: #c4a052;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .upload-area {
+            border: 2px dashed #c4a052;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover { background: rgba(196,160,82,0.1); }
+        .upload-area.dragover { background: rgba(196,160,82,0.2); border-color: #e0c272; }
+        .upload-area input { display: none; }
+        .btn {
+            display: block;
+            width: 100%;
+            background: #c4a052;
+            color: #1a1a1a;
+            padding: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        .btn:hover { background: #d4b062; }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+        .message.success { background: rgba(76,175,80,0.2); color: #4caf50; display: block; }
+        .message.error { background: rgba(244,67,54,0.2); color: #f44336; display: block; }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #444;
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+            display: none;
+        }
+        .progress-bar.active { display: block; }
+        .progress-fill {
+            height: 100%;
+            background: #c4a052;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .preview { margin-top: 20px; text-align: center; }
+        .preview img { max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #c4a052; }
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: #333;
+            margin-bottom: 20px;
+        }
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #f44336;
+        }
+        .status-dot.online { background: #4caf50; }
+        .file-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #888;
+        }
+        .firestore-section { margin-top: 20px; }
+        .field-group {
+            margin-bottom: 15px;
+        }
+        .field-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #aaa;
+            font-size: 14px;
+        }
+        .field-group input, .field-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #222;
+            color: #fff;
+            font-size: 14px;
+        }
+        .field-group input:focus, .field-group select:focus {
+            outline: none;
+            border-color: #c4a052;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Firebase Upload Tool</h1>
+
+        <div class="status" id="status">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="statusText">Connecting to Firebase...</span>
+        </div>
+
+        <!-- Storage Upload Section -->
+        <div class="card">
+            <h2>1. Upload Image to Storage</h2>
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="fileInput" accept="image/*">
+                <div style="font-size: 48px; margin-bottom: 15px;">📁</div>
+                <p>Click to select or drag & drop</p>
+                <p style="font-size: 12px; color: #666; margin-top: 8px;">images/logo.png (recommended)</p>
+            </div>
+            <div class="preview" id="preview" style="display:none;">
+                <p style="margin-bottom: 10px;">Preview:</p>
+                <img id="previewImg" src="" alt="Preview">
+            </div>
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <button class="btn" id="uploadBtn" style="display:none;">Upload to Firebase Storage</button>
+            <div id="uploadMessage" class="message"></div>
+            <div class="file-info" id="fileInfo"></div>
+        </div>
+
+        <!-- Firestore Banner Document -->
+        <div class="card firestore-section">
+            <h2>2. Create Banner Document in Firestore</h2>
+            <div class="field-group">
+                <label>Banner ID</label>
+                <input type="text" id="bannerId" value="site-banner" readonly>
+            </div>
+            <div class="field-group">
+                <label>Image URL (from Storage)</label>
+                <input type="text" id="bannerUrl" placeholder="Paste Storage URL here after upload">
+            </div>
+            <div class="field-group">
+                <label>Alt Text</label>
+                <input type="text" id="bannerAlt" value="Ken Barbershop Banner">
+            </div>
+            <div class="field-group">
+                <label>Active</label>
+                <select id="bannerActive">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <label>Updated At</label>
+                <input type="text" id="bannerUpdated" readonly>
+            </div>
+            <button class="btn" id="saveDocBtn">Save to Firestore</button>
+            <div id="docMessage" class="message"></div>
+        </div>
+
+        <!-- Check Current Banner -->
+        <div class="card">
+            <h2>3. Current Banner Status</h2>
+            <button class="btn" id="checkBtn" style="background: #444; color: #fff;">Check Banner from Firestore</button>
+            <div id="currentBanner" style="margin-top: 15px; text-align: center;"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script src="static/js/firebase-config.js"></script>
+
+    <script>
+        const BANNER_PATH = 'banners/site-banner.jpg';
+        const BANNER_DOC_PATH = 'banners/site-banner';
+
+        // DOM
+        const status = document.getElementById('status');
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const preview = document.getElementById('preview');
+        const previewImg = document.getElementById('previewImg');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const fileInfo = document.getElementById('fileInfo');
+        const uploadMessage = document.getElementById('uploadMessage');
+        const bannerUrl = document.getElementById('bannerUrl');
+        const bannerAlt = document.getElementById('bannerAlt');
+        const bannerActive = document.getElementById('bannerActive');
+        const bannerUpdated = document.getElementById('bannerUpdated');
+        const saveDocBtn = document.getElementById('saveDocBtn');
+        const docMessage = document.getElementById('docMessage');
+        const checkBtn = document.getElementById('checkBtn');
+        const currentBanner = document.getElementById('currentBanner');
+
+        let storage = null;
+        let db = null;
+        let uploadedUrl = null;
+
+        // Initialize Firebase
+        function initFirebase() {
+            try {
+                if (typeof firebase === 'undefined') {
+                    throw new Error('Firebase SDK not loaded');
+                }
+                if (!firebaseConfig || firebaseConfig.apiKey === 'YOUR_API_KEY') {
+                    throw new Error('Firebase config not set in firebase-config.js');
+                }
+
+                // Check if already initialized
+                if (firebase.apps.length === 0) {
+                    firebase.initializeApp(firebaseConfig);
+                }
+                storage = firebase.storage();
+                db = firebase.firestore();
+                statusDot.classList.add('online');
+                statusText.textContent = 'Firebase connected! Storage: ' + firebaseConfig.storageBucket;
+                return true;
+            } catch (error) {
+                statusText.textContent = 'Error: ' + error.message;
+                console.error('Firebase init error:', error);
+                return false;
+            }
+        }
+
+        // File selection
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                previewImg.src = URL.createObjectURL(file);
+                preview.style.display = 'block';
+                uploadBtn.style.display = 'block';
+                fileInfo.textContent = `Selected: ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+            }
+        });
+
+        // Upload to Storage
+        uploadBtn.addEventListener('click', async () => {
+            const file = fileInput.files[0];
+            if (!file || !storage) {
+                showMessage('Please select a file first', 'error', 'upload');
+                return;
+            }
+
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = 'Uploading...';
+            progressBar.classList.add('active');
+            progressFill.style.width = '0%';
+
+            try {
+                const bannerRef = storage.ref(BANNER_PATH);
+                const uploadTask = bannerRef.put(file);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        progressFill.style.width = `${progress}%`;
+                    },
+                    (error) => {
+                        showMessage('Upload failed: ' + error.message, 'error', 'upload');
+                        resetUpload();
+                    },
+                    async () => {
+                        uploadedUrl = await uploadTask.snapshot.ref.getDownloadURL();
+                        bannerUrl.value = uploadedUrl;
+                        showMessage('Upload successful! URL auto-filled below.', 'success', 'upload');
+                        resetUpload();
+                    }
+                );
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error', 'upload');
+                resetUpload();
+            }
+        });
+
+        function resetUpload() {
+            uploadBtn.disabled = false;
+            uploadBtn.textContent = 'Upload to Firebase Storage';
+            progressBar.classList.remove('active');
+        }
+
+        function showMessage(text, type, section) {
+            const msgEl = section === 'doc' ? docMessage : uploadMessage;
+            msgEl.textContent = text;
+            msgEl.className = 'message ' + type;
+            setTimeout(() => { msgEl.className = 'message'; }, 5000);
+        }
+
+        // Drag & Drop
+        uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+        uploadArea.addEventListener('dragleave', () => { uploadArea.classList.remove('dragover'); });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files[0]) {
+                fileInput.files = e.dataTransfer.files;
+                fileInput.dispatchEvent(new Event('change'));
+            }
+        });
+        uploadArea.addEventListener('click', () => { fileInput.click(); });
+
+        // Save to Firestore
+        bannerUpdated.value = new Date().toISOString();
+        saveDocBtn.addEventListener('click', async () => {
+            if (!db) { showMessage('Firebase not initialized', 'error', 'doc'); return; }
+            if (!bannerUrl.value) { showMessage('Please upload image first or paste URL', 'error', 'doc'); return; }
+
+            saveDocBtn.disabled = true;
+            saveDocBtn.textContent = 'Saving...';
+
+            try {
+                await db.collection('banners').doc(bannerId.value).set({
+                    url: bannerUrl.value,
+                    alt: bannerAlt.value,
+                    active: bannerActive.value === 'true',
+                    path: BANNER_PATH,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+
+                showMessage('Banner document saved to Firestore!', 'success', 'doc');
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error', 'doc');
+            }
+
+            saveDocBtn.disabled = false;
+            saveDocBtn.textContent = 'Save to Firestore';
+        });
+
+        // Check Banner from Firestore
+        checkBtn.addEventListener('click', async () => {
+            if (!db) { currentBanner.innerHTML = '<p style="color:#f44336;">Firebase not initialized</p>'; return; }
+
+            checkBtn.disabled = true;
+            checkBtn.textContent = 'Checking...';
+
+            try {
+                const doc = await db.collection('banners').doc('site-banner').get();
+                if (doc.exists) {
+                    const data = doc.data();
+                    currentBanner.innerHTML = `
+                        <div style="background:#222; padding:15px; border-radius:8px;">
+                            <p><strong>Status:</strong> <span style="color:#4caf50;">Active</span></p>
+                            <p><strong>URL:</strong> <a href="${data.url}" target="_blank" style="color:#c4a052;">View Image</a></p>
+                            <p><strong>Alt:</strong> ${data.alt || 'N/A'}</p>
+                            <p><strong>Path:</strong> ${data.path || 'N/A'}</p>
+                        </div>
+                        <img src="${data.url}" style="max-width:100%; max-height:200px; margin-top:15px; border-radius:8px; border:2px solid #c4a052;" />
+                    `;
+                } else {
+                    currentBanner.innerHTML = '<p style="color:#888;">No banner document found. Upload an image first.</p>';
+                }
+            } catch (error) {
+                currentBanner.innerHTML = `<p style="color:#f44336;">Error: ${error.message}</p>`;
+            }
+
+            checkBtn.disabled = false;
+            checkBtn.textContent = 'Check Banner from Firestore';
+        });
+
+        // Init on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                initFirebase();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

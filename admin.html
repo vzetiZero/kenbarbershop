@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Ken Barbershop Banner Manager</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a1a; color: #fff; min-height: 100vh; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: #c4a052; text-align: center; margin-bottom: 30px; }
+
+        .status-bar { padding: 15px; border-radius: 8px; margin-bottom: 20px; background: #2a2a2a; display: flex; align-items: center; gap: 10px; }
+        .status-dot { width: 12px; height: 12px; border-radius: 50%; background: #f44336; }
+        .status-dot.online { background: #4caf50; }
+        .status-text { flex: 1; }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+        .btn-primary { background: #c4a052; color: #1a1a1a; }
+        .btn-primary:hover { background: #d4b062; }
+        .btn-danger { background: #e53935; color: #fff; }
+        .btn-danger:hover { background: #ef5350; }
+        .btn-small { padding: 5px 12px; font-size: 12px; }
+
+        .card { background: #2a2a2a; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .card h2 { color: #c4a052; margin-bottom: 15px; font-size: 1.2rem; }
+
+        .banner-list { display: flex; flex-direction: column; gap: 10px; }
+        .banner-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #333; border-radius: 8px; }
+        .banner-item img { width: 80px; height: 60px; object-fit: cover; border-radius: 4px; border: 2px solid #c4a052; }
+        .banner-item .info { flex: 1; }
+        .banner-item .name { font-weight: 600; margin-bottom: 5px; }
+        .banner-item .status { font-size: 12px; color: #888; }
+        .banner-item .status.active { color: #4caf50; }
+        .banner-item .actions { display: flex; gap: 8px; }
+        .banner-item.idle { opacity: 0.6; }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #aaa; font-size: 14px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #444; background: #222; color: #fff; font-size: 14px; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #c4a052; }
+
+        .upload-area { border: 2px dashed #c4a052; border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.3s; margin-bottom: 20px; }
+        .upload-area:hover { background: rgba(196,160,82,0.1); }
+        .upload-area.dragover { background: rgba(196,160,82,0.2); }
+        .upload-area.has-file { border-color: #4caf50; background: rgba(76,175,80,0.1); }
+        .preview-img { max-width: 200px; max-height: 150px; border-radius: 8px; margin-top: 10px; display: none; }
+        .preview-img.show { display: block; }
+
+        .message { padding: 12px; border-radius: 6px; margin-top: 15px; display: none; }
+        .message.show { display: block; }
+        .message.success { background: rgba(76,175,80,0.2); color: #4caf50; }
+        .message.error { background: rgba(244,67,54,0.2); color: #f44336; }
+
+        .loading { text-align: center; padding: 40px; color: #666; }
+        .empty { text-align: center; padding: 40px; color: #666; }
+
+        .hidden { display: none !important; }
+
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: #2a2a2a; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; }
+        .modal h3 { color: #c4a052; margin-bottom: 20px; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Banner Manager</h1>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-dot" id="statusDot"></div>
+            <span class="status-text" id="statusText">Connecting to Supabase...</span>
+            <button class="btn btn-primary" id="refreshBtn">Refresh</button>
+        </div>
+
+        <!-- Add New Banner -->
+        <div class="card">
+            <h2>+ Add New Banner</h2>
+            <div class="upload-area" id="uploadArea">
+                <div id="uploadText">📷 Click or drag image here</div>
+                <img id="previewImage" class="preview-img" alt="Preview">
+            </div>
+            <input type="file" id="fileInput" accept="image/*" style="display:none;">
+
+            <div class="form-group">
+                <label>Alt Text</label>
+                <input type="text" id="altInput" placeholder="Banner description">
+            </div>
+
+            <button class="btn btn-primary" id="uploadBtn" disabled>Upload Banner</button>
+            <div id="message" class="message"></div>
+        </div>
+
+        <!-- Banner List -->
+        <div class="card">
+            <h2>📋 Banner List</h2>
+            <div id="bannerList">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal hidden" id="editModal">
+        <div class="modal-content">
+            <h3>✏️ Edit Banner</h3>
+            <input type="hidden" id="editId">
+            <div class="form-group">
+                <label>Alt Text</label>
+                <input type="text" id="editAlt">
+            </div>
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" id="editUrl" readonly style="opacity: 0.6;">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="cancelEditBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveEditBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/supabase-config.js"></script>
+    <script>
+        // DOM Elements
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadText = document.getElementById('uploadText');
+        const previewImage = document.getElementById('previewImage');
+        const fileInput = document.getElementById('fileInput');
+        const altInput = document.getElementById('altInput');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const message = document.getElementById('message');
+        const bannerList = document.getElementById('bannerList');
+        const editModal = document.getElementById('editModal');
+        const editId = document.getElementById('editId');
+        const editAlt = document.getElementById('editAlt');
+        const editUrl = document.getElementById('editUrl');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        const saveEditBtn = document.getElementById('saveEditBtn');
+
+        // Cloudinary config
+        const cloudinaryConfig = { cloudName: 'dccqzztkk', uploadPreset: 'ken_barbershop' };
+
+        // State
+        let selectedFile = null;
+
+        // Show message
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = 'message show ' + type;
+            setTimeout(() => { message.className = 'message'; }, 4000);
+        }
+
+        // Check connection
+        async function checkConnection() {
+            try {
+                const response = await fetch(`${supabaseUrl}/rest/v1/banners?select=id&limit=1`, {
+                    headers: {
+                        'apikey': supabaseSecretKey || supabaseKey,
+                        'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`
+                    }
+                });
+                if (!response.ok) throw new Error('Status: ' + response.status);
+                statusDot.classList.add('online');
+                statusText.textContent = '✓ Connected to Supabase';
+                return true;
+            } catch (error) {
+                statusText.textContent = '✗ Connection failed: ' + error.message;
+                return false;
+            }
+        }
+
+        // Load banners
+        async function loadBanners() {
+            bannerList.innerHTML = '<div class="loading">Loading...</div>';
+            try {
+                const response = await fetch(`${supabaseUrl}/rest/v1/banners?select=*&order=sort_order.asc`, {
+                    headers: {
+                        'apikey': supabaseSecretKey || supabaseKey,
+                        'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to fetch');
+                const banners = await response.json();
+                renderBanners(banners);
+            } catch (error) {
+                bannerList.innerHTML = '<div class="empty">Error: ' + error.message + '</div>';
+            }
+        }
+
+        // Render banners
+        function renderBanners(banners) {
+            if (!banners || banners.length === 0) {
+                bannerList.innerHTML = '<div class="empty">No banners yet. Add one above!</div>';
+                return;
+            }
+            bannerList.innerHTML = banners.map(b => `
+                <div class="banner-item ${b.active ? '' : 'idle'}">
+                    <img src="${b.url}" alt="${b.alt || ''}">
+                    <div class="info">
+                        <div class="name">${b.alt || '(no alt)'}</div>
+                        <div class="status ${b.active ? 'active' : ''}">${b.active ? '● Active' : '○ Inactive'}</div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-small" onclick="editBanner('${b.id}', '${b.alt || ''}', '${b.url}')">Edit</button>
+                        <button class="btn btn-small ${b.active ? '' : 'btn-primary'}" onclick="toggleBanner('${b.id}', ${!b.active})">${b.active ? 'Disable' : 'Enable'}</button>
+                        <button class="btn btn-danger btn-small" onclick="deleteBanner('${b.id}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Edit banner
+        window.editBanner = function(id, alt, url) {
+            editId.value = id;
+            editAlt.value = alt;
+            editUrl.value = url;
+            editModal.classList.remove('hidden');
+        };
+
+        cancelEditBtn.onclick = () => editModal.classList.add('hidden');
+
+        saveEditBtn.onclick = async () => {
+            const id = editId.value;
+            const alt = editAlt.value;
+            try {
+                const response = await fetch(`${supabaseUrl}/rest/v1/banners?id=eq.${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': supabaseSecretKey || supabaseKey,
+                        'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`,
+                        'Prefer': 'return=representation'
+                    },
+                    body: JSON.stringify({ alt })
+                });
+                if (!response.ok) throw new Error('Update failed');
+                editModal.classList.add('hidden');
+                showMessage('Banner updated!', 'success');
+                loadBanners();
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            }
+        };
+
+        // Toggle banner active
+        window.toggleBanner = async function(id, active) {
+            try {
+                const response = await fetch(`${supabaseUrl}/rest/v1/banners?id=eq.${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': supabaseSecretKey || supabaseKey,
+                        'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`
+                    },
+                    body: JSON.stringify({ active })
+                });
+                if (!response.ok) throw new Error('Update failed');
+                showMessage(active ? 'Banner enabled!' : 'Banner disabled!', 'success');
+                loadBanners();
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            }
+        };
+
+        // Delete banner
+        window.deleteBanner = async function(id) {
+            if (!confirm('Delete this banner?')) return;
+            try {
+                const response = await fetch(`${supabaseUrl}/rest/v1/banners?id=eq.${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'apikey': supabaseSecretKey || supabaseKey,
+                        'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`
+                    }
+                });
+                if (!response.ok) throw new Error('Delete failed');
+                showMessage('Banner deleted!', 'success');
+                loadBanners();
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            }
+        };
+
+        // File selection
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (file.size > 10 * 1024 * 1024) { showMessage('File too large (max 10MB)', 'error'); return; }
+            selectedFile = file;
+            previewImage.src = URL.createObjectURL(file);
+            previewImage.classList.add('show');
+            uploadArea.classList.add('has-file');
+            uploadText.textContent = '📷 ' + file.name;
+            uploadBtn.disabled = false;
+        });
+
+        // Drag & drop
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files[0]) {
+                fileInput.files = e.dataTransfer.files;
+                fileInput.dispatchEvent(new Event('change'));
+            }
+        });
+
+        // Upload
+        uploadBtn.onclick = async () => {
+            if (!selectedFile) return;
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = 'Uploading...';
+
+            try {
+                // Upload to Cloudinary
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+                formData.append('upload_preset', cloudinaryConfig.uploadPreset);
+                formData.append('folder', 'kenbarbershop/banners');
+
+                const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!uploadRes.ok) throw new Error('Upload failed');
+                const uploadData = await uploadRes.json();
+
+                // Get current banners count for sort_order
+                const countRes = await fetch(`${supabaseUrl}/rest/v1/banners?select=id`, {
+                    headers: {
+                        'apikey': supabaseSecretKey || supabaseKey,
+                        'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`
+                    }
+                });
+                const countData = await countRes.json();
+
+                // Save to Supabase
+                const newBanner = {
+                    url: uploadData.secure_url,
+                    alt: altInput.value || 'Banner',
+                    active: true,
+                    sort_order: (countData?.length || 0) + 1
+                };
+
+                const saveRes = await fetch(`${supabaseUrl}/rest/v1/banners`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': supabaseSecretKey || supabaseKey,
+                        'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`,
+                        'Prefer': 'return=representation'
+                    },
+                    body: JSON.stringify(newBanner)
+                });
+                if (!saveRes.ok) throw new Error('Save failed');
+
+                // Reset
+                selectedFile = null;
+                previewImage.classList.remove('show');
+                previewImage.src = '';
+                uploadArea.classList.remove('has-file');
+                uploadText.textContent = '📷 Click or drag image here';
+                altInput.value = '';
+                fileInput.value = '';
+                uploadBtn.disabled = true;
+
+                showMessage('Banner uploaded successfully!', 'success');
+                loadBanners();
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            } finally {
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = 'Upload Banner';
+            }
+        };
+
+        // Refresh button
+        refreshBtn.onclick = async () => {
+            await checkConnection();
+            await loadBanners();
+        };
+
+        // Init
+        (async function init() {
+            await checkConnection();
+            await loadBanners();
+        })();
+    </script>
+</body>
+</html>

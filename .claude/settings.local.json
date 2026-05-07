@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-Content -Path \"c:\\\\Users\\\\Admin\\\\Desktop\\\\kenbarbershop\\\\index.html\" -Raw)",
+      "Bash(Select-Object -First 1)",
+      "Bash(curl -s -I \"https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js\")",
+      "Bash(Select-String \"HTTP\")",
+      "Bash(git add *)"
+    ]
+  }
+}

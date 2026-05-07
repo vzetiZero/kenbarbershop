@@ -1,4 +1,174 @@
 (function () {
+	// Banner Slider System - Fetches from Supabase
+	const SETTINGS_KEY = 'kenbarbershop_banner_settings';
+	const pageBanner = document.getElementById('page-banner');
+
+	function getBannerSettings() {
+		const defaults = {
+			autoSlide: true,
+			slideInterval: 5,
+			parallax: true,
+			showArrows: true,
+			showDots: true
+		};
+		const saved = localStorage.getItem(SETTINGS_KEY);
+		return saved ? JSON.parse(saved) : defaults;
+	}
+
+	async function fetchBannersFromSupabase() {
+		try {
+			const response = await fetch(`${supabaseUrl}/rest/v1/banners?select=*&order=sort_order.asc&active=eq.true`, {
+				headers: {
+					'apikey': supabaseSecretKey || supabaseKey,
+					'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`
+				}
+			});
+			if (!response.ok) throw new Error('Failed to fetch banners');
+			return await response.json();
+		} catch (error) {
+			console.warn('Failed to fetch banners from Supabase:', error);
+			return [];
+		}
+	}
+
+	async function createBannerSlider() {
+		if (!pageBanner) return;
+
+		const banners = await fetchBannersFromSupabase();
+		if (banners.length === 0) {
+			pageBanner.style.display = 'none';
+			return;
+		}
+
+		const settings = getBannerSettings();
+		const hasMultipleBanners = banners.length > 1;
+
+		let sliderHTML = '<div class="banner-slider">';
+		banners.forEach((banner, index) => {
+			sliderHTML += `
+				<div class="banner-slide" data-index="${index}">
+					<img src="${banner.url}" alt="${banner.alt || 'Banner ' + (index + 1)}">
+				</div>
+			`;
+		});
+		sliderHTML += '</div>';
+
+		if (settings.showArrows && hasMultipleBanners) {
+			sliderHTML += `
+				<button class="banner-nav prev" aria-label="Previous">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M15 18l-6-6 6-6"/>
+					</svg>
+				</button>
+				<button class="banner-nav next" aria-label="Next">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M9 18l6-6-6-6"/>
+					</svg>
+				</button>
+			`;
+		}
+
+		if (settings.showDots && hasMultipleBanners) {
+			sliderHTML += '<div class="banner-dots">';
+			banners.forEach((_, index) => {
+				sliderHTML += `<span class="banner-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>`;
+			});
+			sliderHTML += '</div>';
+		}
+
+		if (settings.parallax) {
+			pageBanner.classList.add('parallax');
+		}
+
+		pageBanner.innerHTML = sliderHTML;
+		pageBanner.style.display = 'block';
+
+		if (hasMultipleBanners) {
+			initSlider(settings);
+		}
+	}
+
+	function initSlider(settings) {
+		const slider = pageBanner.querySelector('.banner-slider');
+		const slides = pageBanner.querySelectorAll('.banner-slide');
+		const dots = pageBanner.querySelectorAll('.banner-dot');
+		const prevBtn = pageBanner.querySelector('.banner-nav.prev');
+		const nextBtn = pageBanner.querySelector('.banner-nav.next');
+
+		let currentIndex = 0;
+		let autoPlayInterval = null;
+		const totalSlides = slides.length;
+
+		function goToSlide(index) {
+			if (index < 0) index = totalSlides - 1;
+			if (index >= totalSlides) index = 0;
+
+			currentIndex = index;
+			slider.style.transform = `translateX(-${index * 100}%)`;
+
+			// Update dots
+			dots.forEach((dot, i) => {
+				dot.classList.toggle('active', i === index);
+			});
+		}
+
+		function nextSlide() {
+			goToSlide(currentIndex + 1);
+		}
+
+		function prevSlide() {
+			goToSlide(currentIndex - 1);
+		}
+
+		function startAutoPlay() {
+			if (!settings.autoSlide) return;
+			stopAutoPlay();
+			autoPlayInterval = setInterval(nextSlide, settings.slideInterval * 1000);
+		}
+
+		function stopAutoPlay() {
+			if (autoPlayInterval) {
+				clearInterval(autoPlayInterval);
+				autoPlayInterval = null;
+			}
+		}
+
+		// Event listeners
+		if (prevBtn) prevBtn.addEventListener('click', () => { stopAutoPlay(); prevSlide(); startAutoPlay(); });
+		if (nextBtn) nextBtn.addEventListener('click', () => { stopAutoPlay(); nextSlide(); startAutoPlay(); });
+
+		dots.forEach(dot => {
+			dot.addEventListener('click', () => {
+				stopAutoPlay();
+				goToSlide(parseInt(dot.dataset.index));
+				startAutoPlay();
+			});
+		});
+
+		// Parallax effect
+		if (settings.parallax) {
+			window.addEventListener('scroll', () => {
+				const bannerRect = pageBanner.getBoundingClientRect();
+				if (bannerRect.bottom > 0 && bannerRect.top < window.innerHeight) {
+					const scrollPercent = bannerRect.top / window.innerHeight;
+					const translateY = scrollPercent * 50; // Parallax amount
+					const activeImg = slides[currentIndex]?.querySelector('img');
+					if (activeImg) {
+						activeImg.style.transform = `translateY(${translateY}px)`;
+					}
+				}
+			});
+		}
+
+		// Start autoplay
+		startAutoPlay();
+	}
+
+	// Initialize on load
+	if (pageBanner) {
+		createBannerSlider();
+	}
+
 	const menuToggles = document.querySelectorAll('.elementor-menu-toggle');
 	const langToggle = document.getElementById('lang-toggle');
 	const langSwitcher = document.getElementById('lang-switcher');
