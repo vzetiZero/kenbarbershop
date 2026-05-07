@@ -10,6 +10,26 @@
         .container { max-width: 900px; margin: 0 auto; }
         h1 { color: #c4a052; text-align: center; margin-bottom: 30px; }
 
+        /* Login Screen */
+        .login-screen { position: fixed; inset: 0; background: #1a1a1a; display: flex; align-items: center; justify-content: center; z-index: 2000; }
+        .login-screen.hidden { display: none; }
+        .login-box { background: #2a2a2a; padding: 40px; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; }
+        .login-box h2 { color: #c4a052; margin-bottom: 30px; font-size: 1.5rem; }
+        .login-box .logo { font-size: 48px; margin-bottom: 20px; }
+        .login-group { margin-bottom: 20px; text-align: left; }
+        .login-group label { display: block; margin-bottom: 8px; color: #aaa; font-size: 14px; }
+        .login-group input { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #444; background: #222; color: #fff; font-size: 14px; }
+        .login-group input:focus { outline: none; border-color: #c4a052; }
+        .login-btn { width: 100%; padding: 14px; background: #c4a052; color: #1a1a1a; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
+        .login-btn:hover { background: #d4b062; }
+        .login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .login-error { color: #f44336; margin-top: 15px; display: none; font-size: 14px; }
+        .login-error.show { display: block; }
+
+        /* Admin Panel - hidden by default */
+        .admin-panel { display: none; }
+        .admin-panel.show { display: block; }
+
         .status-bar { padding: 15px; border-radius: 8px; margin-bottom: 20px; background: #2a2a2a; display: flex; align-items: center; gap: 10px; }
         .status-dot { width: 12px; height: 12px; border-radius: 50%; background: #f44336; }
         .status-dot.online { background: #4caf50; }
@@ -20,6 +40,7 @@
         .btn-danger { background: #e53935; color: #fff; }
         .btn-danger:hover { background: #ef5350; }
         .btn-small { padding: 5px 12px; font-size: 12px; }
+        .btn-logout { background: #666; color: #fff; }
 
         .card { background: #2a2a2a; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
         .card h2 { color: #c4a052; margin-bottom: 15px; font-size: 1.2rem; }
@@ -63,39 +84,61 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎯 Banner Manager</h1>
-
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <div class="status-dot" id="statusDot"></div>
-            <span class="status-text" id="statusText">Connecting to Supabase...</span>
-            <button class="btn btn-primary" id="refreshBtn">Refresh</button>
-        </div>
-
-        <!-- Add New Banner -->
-        <div class="card">
-            <h2>+ Add New Banner</h2>
-            <div class="upload-area" id="uploadArea">
-                <div id="uploadText">📷 Click or drag image here</div>
-                <img id="previewImage" class="preview-img" alt="Preview">
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <div class="logo">🔐</div>
+            <h2>Admin Login</h2>
+            <div class="login-group">
+                <label>Username</label>
+                <input type="text" id="loginUsername" placeholder="Enter username">
             </div>
-            <input type="file" id="fileInput" accept="image/*" style="display:none;">
+            <div class="login-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="handleLogin()">Login</button>
+            <div class="login-error" id="loginError">Invalid username or password</div>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label>Alt Text</label>
-                <input type="text" id="altInput" placeholder="Banner description">
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="container">
+            <h1>🎯 Banner Manager</h1>
+
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-dot" id="statusDot"></div>
+                <span class="status-text" id="statusText">Connecting to Supabase...</span>
+                <button class="btn btn-primary" id="refreshBtn">Refresh</button>
+                <button class="btn btn-logout" onclick="handleLogout()">Logout</button>
             </div>
 
-            <button class="btn btn-primary" id="uploadBtn" disabled>Upload Banner</button>
-            <div id="message" class="message"></div>
-        </div>
+            <!-- Add New Banner -->
+            <div class="card">
+                <h2>+ Add New Banner</h2>
+                <div class="upload-area" id="uploadArea">
+                    <div id="uploadText">📷 Click or drag image here</div>
+                    <img id="previewImage" class="preview-img" alt="Preview">
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display:none;">
 
-        <!-- Banner List -->
-        <div class="card">
-            <h2>📋 Banner List</h2>
-            <div id="bannerList">
-                <div class="loading">Loading...</div>
+                <div class="form-group">
+                    <label>Alt Text</label>
+                    <input type="text" id="altInput" placeholder="Banner description">
+                </div>
+
+                <button class="btn btn-primary" id="uploadBtn" disabled>Upload Banner</button>
+                <div id="message" class="message"></div>
+            </div>
+
+            <!-- Banner List -->
+            <div class="card">
+                <h2>📋 Banner List</h2>
+                <div id="bannerList">
+                    <div class="loading">Loading...</div>
+                </div>
             </div>
         </div>
     </div>
@@ -123,6 +166,12 @@
     <script src="static/js/supabase-config.js"></script>
     <script>
         // DOM Elements
+        const loginScreen = document.getElementById('loginScreen');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginUsername = document.getElementById('loginUsername');
+        const loginPassword = document.getElementById('loginPassword');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
         const statusDot = document.getElementById('statusDot');
         const statusText = document.getElementById('statusText');
         const refreshBtn = document.getElementById('refreshBtn');
@@ -146,6 +195,81 @@
 
         // State
         let selectedFile = null;
+        let isLoggedIn = false;
+
+        // Check if already logged in
+        function checkAuth() {
+            const savedAuth = localStorage.getItem('kenbarbershop_admin_auth');
+            if (savedAuth === 'logged_in') {
+                isLoggedIn = true;
+                showAdminPanel();
+            }
+        }
+
+        // Handle login
+        async function handleLogin() {
+            const username = loginUsername.value.trim();
+            const password = loginPassword.value;
+
+            if (!username || !password) {
+                showLoginError('Please enter username and password');
+                return;
+            }
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Checking...';
+
+            try {
+                // Query admin table in Supabase
+                const response = await fetch(`${supabaseUrl}/rest/v1/admin?username=eq.${encodeURIComponent(username)}&password=eq.${encodeURIComponent(password)}&select=id`, {
+                    headers: {
+                        'apikey': supabaseSecretKey || supabaseKey,
+                        'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`
+                    }
+                });
+
+                if (!response.ok) throw new Error('Connection failed');
+
+                const data = await response.json();
+
+                if (data && data.length > 0) {
+                    // Login successful
+                    localStorage.setItem('kenbarbershop_admin_auth', 'logged_in');
+                    isLoggedIn = true;
+                    showAdminPanel();
+                } else {
+                    showLoginError('Invalid username or password');
+                }
+            } catch (error) {
+                showLoginError('Connection error: ' + error.message);
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Login';
+            }
+        }
+
+        function showLoginError(text) {
+            loginError.textContent = text;
+            loginError.classList.add('show');
+            setTimeout(() => { loginError.classList.remove('show'); }, 3000);
+        }
+
+        // Handle logout
+        function handleLogout() {
+            localStorage.removeItem('kenbarbershop_admin_auth');
+            isLoggedIn = false;
+            loginScreen.classList.remove('hidden');
+            adminPanel.classList.remove('show');
+            loginUsername.value = '';
+            loginPassword.value = '';
+        }
+
+        // Show admin panel
+        function showAdminPanel() {
+            loginScreen.classList.add('hidden');
+            adminPanel.classList.add('show');
+            initAdmin();
+        }
 
         // Show message
         function showMessage(text, type) {
@@ -386,11 +510,19 @@
             await loadBanners();
         };
 
-        // Init
-        (async function init() {
+        // Init admin panel
+        async function initAdmin() {
             await checkConnection();
             await loadBanners();
-        })();
+        }
+
+        // Enter key for login
+        loginPassword.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
+
+        // Check auth on load
+        checkAuth();
     </script>
 </body>
 </html>
