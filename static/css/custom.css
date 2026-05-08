@@ -1508,11 +1508,34 @@ textarea {
 	min-height: 600px;
 }
 
+/* Header sections with background image */
+.elementor-element-ea8e286 {
+	background-image: url("../../images/shop/anh_cua_hang_2.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.elementor-element-840a3a1 {
+	background-image: url("../../images/shop/anh_cua_hang_2.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
 /* Mobile responsive footer */
 @media (max-width: 767px) {
 	.elementor-element-3f740f9 {
 		background-attachment: scroll;
 		min-height: 800px;
+	}
+
+	.elementor-element-ea8e286 {
+		background-attachment: scroll;
+	}
+
+	.elementor-element-840a3a1 {
+		background-attachment: scroll;
 	}
 
 	.elementor-73 .elementor-element.elementor-element-5281c0e {
