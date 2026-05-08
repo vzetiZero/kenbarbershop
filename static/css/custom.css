@@ -1510,10 +1510,12 @@ textarea {
 
 /* Features section background image */
 .elementor-element-4d0a8e7 {
-	background-image: url("../../images/shop/anh_cua_hang_2.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../images/shop/anh_cua_hang_2.jpg");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
+	background-repeat: no-repeat;
+	min-height: 900px;
 }
 
 /* Mobile responsive */
