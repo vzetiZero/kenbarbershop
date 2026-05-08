@@ -1505,6 +1505,33 @@ textarea {
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
+	min-height: 600px;
+}
+
+/* Mobile responsive footer */
+@media (max-width: 767px) {
+	.elementor-element-3f740f9 {
+		background-attachment: scroll;
+		min-height: 800px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-5281c0e {
+		--padding-top: 20px;
+		--padding-bottom: 40px;
+		--padding-left: 16px;
+		--padding-right: 16px;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-9e2152c {
+		max-width: 100%;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-2195b9d {
+		--padding-top: 20px;
+		--padding-bottom: 20px;
+		--padding-left: 16px;
+		--padding-right: 16px;
+	}
 }
 
 	.elementor-element-295f765 + .elementor-element-6e84318 > .e-con-inner,
