@@ -1497,6 +1497,15 @@ textarea {
 		padding-top: 0;
 		margin-top: 0;
 	}
+}
+
+/* Footer background image */
+.elementor-element-3f740f9 {
+	background-image: url("../../images/shop/anh_cua_hang_2.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
 
 	.elementor-element-295f765 + .elementor-element-6e84318 > .e-con-inner,
 	.elementor-element-6e84318 + .elementor-element-video-gallery > .e-con-inner {

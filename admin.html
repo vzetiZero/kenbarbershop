@@ -20,6 +20,10 @@
         .login-group label { display: block; margin-bottom: 8px; color: #aaa; font-size: 14px; }
         .login-group input { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #444; background: #222; color: #fff; font-size: 14px; }
         .login-group input:focus { outline: none; border-color: #c4a052; }
+        .password-wrapper { position: relative; }
+        .password-wrapper input { padding-right: 45px; }
+        .toggle-password { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 20px; opacity: 0.6; }
+        .toggle-password:hover { opacity: 1; }
         .login-btn { width: 100%; padding: 14px; background: #c4a052; color: #1a1a1a; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
         .login-btn:hover { background: #d4b062; }
         .login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -95,7 +99,10 @@
             </div>
             <div class="login-group">
                 <label>Password</label>
-                <input type="password" id="loginPassword" placeholder="Enter password">
+                <div class="password-wrapper">
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                    <button type="button" class="toggle-password" id="togglePassword" onclick="togglePasswordVisibility()">👁️</button>
+                </div>
             </div>
             <button class="login-btn" id="loginBtn" onclick="handleLogin()">Login</button>
             <div class="login-error" id="loginError">Invalid username or password</div>
@@ -514,6 +521,19 @@
         async function initAdmin() {
             await checkConnection();
             await loadBanners();
+        }
+
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('loginPassword');
+            const toggleBtn = document.getElementById('togglePassword');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
         }
 
         // Enter key for login
