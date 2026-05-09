@@ -126,8 +126,8 @@ html {
 body {
 	margin: 0;
 	font-family: Roboto, Manrope, Arial, sans-serif;
-	background: #fff;
-	color: #111;
+	background: #f5f5f5;
+	color: #1a1a1a;
 	line-height: 1.5;
 }
 
@@ -186,10 +186,51 @@ textarea {
 	max-width: 100%;
 }
 
-.site-sticky {
-	position: sticky;
-	top: 0;
-	z-index: 1000;
+.site-sticky,
+.site-sticky .e-con-inner,
+.site-sticky .elementor-element {
+	background: #ffffff !important;
+}
+
+.site-sticky .elementor-nav-menu a {
+	color: #111;
+}
+
+.site-sticky .elementor-nav-menu--dropdown {
+	background: #fff;
+	color: #111;
+}
+
+/* Back to top button */
+#back-to-top {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	width: 48px;
+	height: 48px;
+	background: #333;
+	color: #fff;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+	z-index: 999;
+}
+
+#back-to-top.visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+#back-to-top:hover {
+	background: #555;
+	transform: translateY(-4px);
 }
 
 .elementor-nav-menu--dropdown[aria-hidden="true"] {
@@ -197,7 +238,7 @@ textarea {
 }
 
 .elementor-nav-menu--dropdown {
-	background: #111;
+	background: #333;
 	color: #fff;
 	border-radius: 16px;
 	padding: 12px 0;
@@ -234,9 +275,35 @@ textarea {
 	padding: 0;
 }
 
+.elementor-menu-toggle .e-font-icon-svg {
+	color: #111;
+}
+
 .elementor-nav-menu a {
 	display: block;
 	padding: 12px 18px;
+	color: #111 !important;
+}
+
+.site-sticky .elementor-nav-menu a {
+	color: #111 !important;
+}
+
+.elementor-nav-menu .elementor-item {
+	color: #111 !important;
+	opacity: 1 !important;
+}
+
+.elementor-nav-menu .elementor-item:hover,
+.elementor-nav-menu .elementor-item.elementor-item-active {
+	color: #333 !important;
+	opacity: 1 !important;
+}
+
+.site-sticky .elementor-nav-menu--dropdown {
+	background: #fff;
+	color: #111;
+	box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
 .elementor-button {
@@ -245,7 +312,7 @@ textarea {
 	justify-content: center;
 	padding: 14px 24px;
 	border-radius: 999px;
-	background: #111;
+	background: #444;
 	color: #fff;
 	border: 0;
 	text-decoration: none;
@@ -334,7 +401,7 @@ textarea {
 	height: 44px;
 	padding: 0;
 	border-radius: 10px;
-	background: #111;
+	background: #333;
 	border: none;
 	cursor: pointer;
 	box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
@@ -353,7 +420,7 @@ textarea {
 	width: 66px;
 	padding: 12px 0;
 	border-radius: 7px;
-	background: #111;
+	background: #333;
 	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
 	justify-items: center;
 }
@@ -511,26 +578,33 @@ textarea {
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 1.45;
-	color: #3c410b;
+	color: #4a4a4a;
 }
 
 @media (max-width: 767px) {
 	.lang-switcher {
-		top: auto;
+		top: 16px;
 		right: 16px;
-		bottom: 16px;
+		bottom: auto;
 	}
 
 	.lang-menu {
-		top: auto;
+		top: calc(100% + 8px);
 		right: 0;
-		bottom: calc(100% + 8px);
+		bottom: auto;
 	}
 
 	.cash-payment-note {
 		margin: 6px auto 14px;
 		padding: 0 8px;
 		font-size: 14px;
+	}
+
+	#back-to-top {
+		bottom: 90px;
+		right: 16px;
+		width: 40px;
+		height: 40px;
 	}
 }
 
@@ -714,10 +788,10 @@ textarea {
 	width: min(100%, 520px);
 	margin: 0 auto;
 	padding: clamp(34px, 4vw, 56px) clamp(22px, 3.5vw, 42px);
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 22px;
-	background: #fff;
-	color: #111;
+	background: #f8f8f8;
+	color: #1a1a1a;
 	text-align: center;
 	text-shadow: none;
 	box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
@@ -771,7 +845,7 @@ textarea {
 .elementor-element-d85b9cb .elementor-element-38a3bfd .contact-payment-notice {
 	width: min(100%, 320px);
 	margin: 0 auto 24px;
-	color: #3c410b;
+	color: #4a4a4a;
 	line-height: 1.45;
 }
 
@@ -811,9 +885,9 @@ textarea {
 .elementor-element-d85b9cb .elementor-button {
 	min-width: 150px;
 	border-radius: 4px;
-	background: #d6a84a;
-	color: #111;
-	font-weight: 700;
+	background: #555;
+	color: #fff;
+	font-weight: 600;
 }
 
 .elementor-element-d85b9cb .elementor-custom-embed iframe {
@@ -1510,12 +1584,10 @@ textarea {
 
 /* Features section background image */
 .elementor-element-4d0a8e7 {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../images/shop/anh_cua_hang_2.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("../../images/shop/anh_cua_hang_2.jpg");
 	background-size: cover;
 	background-position: center;
-	background-attachment: fixed;
 	background-repeat: no-repeat;
-	min-height: 900px;
 }
 
 /* Mobile responsive */
@@ -1523,10 +1595,6 @@ textarea {
 	.elementor-element-3f740f9 {
 		background-attachment: scroll;
 		min-height: 800px;
-	}
-
-	.elementor-element-4d0a8e7 {
-		background-attachment: scroll;
 	}
 
 	.elementor-73 .elementor-element.elementor-element-5281c0e {
