@@ -660,6 +660,7 @@
 			uk: '<p class="contact-payment-notice"><strong>Ми рекомендуємо клієнтам оплачувати готівкою. Якщо у вас немає готівки, можна оплатити карткою. Дякуємо.</strong></p><p><strong>Телефон:</strong><br>+420 773 919 789</p><p><strong>Години роботи:</strong><br>Понеділок | 09:00 – 19:30<br>Вівторок | 09:00 – 19:30<br>Середа | 09:00 – 19:30<br>Четвер | 09:00 – 19:30<br>П&#39;ятниця | 09:00 – 19:30<br>Субота | 09:00 – 19:30<br>Неділя | Зачинено</p><p><strong>Адреса:</strong><br>Seifertova 595/67<br>Praha 3</p>'
 		};
 		contact.innerHTML = content[lang] || content.cs;
+		contact.innerHTML = contact.innerHTML.replace(/\+420 773 919 789/g, '<a href="tel:+420773919789">+420 773 919 789</a>');
 	};
 	const updateContactForm = (lang) => {
 		const map = phraseTranslations[lang];

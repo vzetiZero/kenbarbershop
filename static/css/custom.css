@@ -2878,3 +2878,19 @@ textarea,
 		font-size: 17px !important;
 	}
 }
+
+/* Contact heading emphasis. */
+.elementor-45 .elementor-element-d85b9cb .elementor-element-e7b6e81 .elementor-heading-title {
+	font-size: clamp(44px, 5.2vw, 76px) !important;
+	font-weight: 900 !important;
+	line-height: 1 !important;
+	letter-spacing: 0.01em;
+}
+
+@media (max-width: 767px) {
+	.elementor-45 .elementor-element-d85b9cb .elementor-element-e7b6e81 .elementor-heading-title {
+		font-size: clamp(34px, 10vw, 46px) !important;
+		line-height: 1.06 !important;
+		text-align: center;
+	}
+}
