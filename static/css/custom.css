@@ -2700,3 +2700,181 @@ textarea,
 		aspect-ratio: auto !important;
 	}
 }
+
+/* Footer language/form layout repair. */
+.elementor-73 .elementor-element.elementor-element-5281c0e {
+	display: grid !important;
+	grid-template-columns: minmax(260px, 0.82fr) minmax(420px, 1fr);
+	align-items: center !important;
+	column-gap: clamp(36px, 6vw, 92px) !important;
+	row-gap: 32px !important;
+	width: 100%;
+}
+
+.elementor-73 .elementor-element.elementor-element-a303413,
+.elementor-73 .elementor-element.elementor-element-7510d83 {
+	width: 100% !important;
+	max-width: none !important;
+	min-width: 0 !important;
+	--width: 100% !important;
+}
+
+.elementor-73 .elementor-element.elementor-element-9e2152c {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: flex-start !important;
+	gap: 12px !important;
+	width: 100% !important;
+	max-width: 440px !important;
+	margin: 0 !important;
+}
+
+.elementor-73 .elementor-element.elementor-element-9d81c74 {
+	margin: 0 !important;
+	text-align: left !important;
+	white-space: nowrap;
+}
+
+.elementor-73 .elementor-element.elementor-element-f60635c {
+	display: grid !important;
+	grid-template-columns: repeat(6, var(--footer-flag-size, 52px)) !important;
+	justify-content: start !important;
+	gap: 12px !important;
+	width: max-content !important;
+	max-width: 100% !important;
+}
+
+.elementor-73 .elementor-element.elementor-element-2195b9d,
+.elementor-73 .elementor-element.elementor-element-934fa78,
+.elementor-73 .elementor-element.elementor-element-934fa78 form {
+	width: 100% !important;
+	max-width: 560px !important;
+}
+
+.elementor-73 .elementor-element.elementor-element-2195b9d {
+	justify-self: end;
+}
+
+@media (max-width: 1180px) and (min-width: 768px) {
+	.elementor-73 .elementor-element.elementor-element-5281c0e {
+		grid-template-columns: minmax(220px, 0.72fr) minmax(390px, 1fr);
+		column-gap: 32px !important;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-f60635c {
+		grid-template-columns: repeat(3, var(--footer-flag-size, 52px)) !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.elementor-73 .elementor-element.elementor-element-5281c0e {
+		grid-template-columns: 1fr;
+		justify-items: center;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-9e2152c,
+	.elementor-73 .elementor-element.elementor-element-2195b9d {
+		align-items: center !important;
+		justify-self: center;
+		text-align: center;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-9d81c74 {
+		text-align: center !important;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-f60635c {
+		grid-template-columns: repeat(3, 56px) !important;
+		justify-content: center !important;
+	}
+}
+
+/* Mobile price list spacing repair. */
+@media (max-width: 767px) {
+	.elementor-45 .elementor-element-b48375f {
+		padding-top: 24px !important;
+		padding-bottom: 24px !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 {
+		gap: 0 !important;
+		padding: 24px 18px !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-8a77a00 {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr) max-content !important;
+		column-gap: 14px !important;
+		row-gap: 0 !important;
+		align-items: start !important;
+		padding: 18px 0 !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-2ae0127 h4 {
+		margin-bottom: 8px !important;
+		font-size: 21px !important;
+		line-height: 1.12 !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-2ae0127 p {
+		margin-top: 3px !important;
+		font-size: 14px !important;
+		line-height: 1.35 !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-cdf1a9c {
+		align-self: start !important;
+		justify-content: flex-end !important;
+		min-width: 76px !important;
+		padding-left: 0 !important;
+		border-left: 0 !important;
+		text-align: right !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-cdf1a9c h5 {
+		font-size: 25px !important;
+		line-height: 1.05 !important;
+	}
+}
+
+/* Mobile hero typography balance. */
+@media (max-width: 767px) {
+	.elementor-45 .elementor-element-f1bbaa6 {
+		min-height: calc(100svh - 70px) !important;
+		padding: 56px 18px 62px !important;
+	}
+
+	.elementor-45 .elementor-element-d0641e4 p {
+		font-size: clamp(14px, 3.9vw, 18px) !important;
+		letter-spacing: 0.16em !important;
+	}
+
+	.elementor-45 .elementor-element-c551ffd img {
+		width: clamp(112px, 34vw, 152px) !important;
+		margin-bottom: 26px !important;
+	}
+
+	.elementor-45 .elementor-element-3b1718c .elementor-heading-title {
+		font-size: clamp(34px, 9.2vw, 46px) !important;
+		line-height: 1.05 !important;
+	}
+
+	.elementor-45 .elementor-element-6854eb2 {
+		margin-top: 24px !important;
+	}
+
+	.elementor-45 .elementor-element-ecb3683 .elementor-element-d42dcc5 {
+		font-size: clamp(22px, 6vw, 28px) !important;
+		line-height: 1.22 !important;
+	}
+
+	.elementor-45 .elementor-element-b95ce80 a {
+		font-size: clamp(28px, 7.5vw, 36px) !important;
+		line-height: 1.1 !important;
+	}
+
+	.elementor-45 .elementor-element-404ef38 .elementor-button {
+		padding: 14px 28px !important;
+		font-size: 17px !important;
+	}
+}
