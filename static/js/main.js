@@ -7,12 +7,14 @@
 		const defaults = {
 			autoSlide: true,
 			slideInterval: 5,
-			parallax: true,
+			parallax: false,
 			showArrows: true,
 			showDots: true
 		};
 		const saved = localStorage.getItem(SETTINGS_KEY);
-		return saved ? JSON.parse(saved) : defaults;
+		const settings = saved ? { ...defaults, ...JSON.parse(saved) } : defaults;
+		settings.parallax = false;
+		return settings;
 	}
 
 	async function fetchBannersFromSupabase() {
@@ -43,15 +45,52 @@
 		const settings = getBannerSettings();
 		const hasMultipleBanners = banners.length > 1;
 
+		const escapeHtml = (value) => String(value ?? '')
+			.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/"/g, '&quot;')
+			.replace(/'/g, '&#39;');
+
+		const bannerSocialHTML = `
+			<div class="banner-social-links" aria-label="Social links">
+				<a class="banner-social-links__item banner-social-links__item--instagram"
+					href="https://www.instagram.com/kenbarbershop.cz" target="_blank" rel="noopener noreferrer"
+					aria-label="Instagram Ken Barbershop">
+					<svg class="banner-social-links__icon" viewBox="0 0 24 24" aria-hidden="true">
+						<rect x="3" y="3" width="18" height="18" rx="5"></rect>
+						<circle cx="12" cy="12" r="4"></circle>
+						<circle cx="17.5" cy="6.5" r="1"></circle>
+					</svg>
+				</a>
+				<a class="banner-social-links__item banner-social-links__item--facebook"
+					href="https://www.facebook.com/people/Ken-Barbershop/100090907493887/" target="_blank" rel="noopener noreferrer"
+					aria-label="Facebook Ken Barbershop">
+					<svg class="banner-social-links__icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M15.12 8.1H13.4c-.72 0-.95.36-.95 1.16v1.42h2.6l-.34 2.64h-2.26V20H9.72v-6.68H7.45v-2.64h2.27V9.04C9.72 6.78 11.08 5.5 13.08 5.5c.96 0 1.78.07 2.04.1v2.5z"></path>
+					</svg>
+				</a>
+				<a class="banner-social-links__item banner-social-links__item--tiktok"
+					href="https://www.tiktok.com/@kenbarbershop.cz" target="_blank" rel="noopener noreferrer"
+					aria-label="TikTok Ken Barbershop">
+					<svg class="banner-social-links__icon banner-social-links__icon--tiktok" viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M15.6 3.4c.34 2.15 1.54 3.47 3.72 3.62v2.42c-1.26.08-2.36-.28-3.64-1.04v4.53c0 5.75-6.28 7.55-8.8 3.43-1.62-2.65-.63-7.3 4.58-7.48v2.56c-.41.07-.85.17-1.25.31-1.2.41-1.88 1.18-1.69 2.53.37 2.58 5.1 3.34 4.7-1.7V3.4h2.38z"></path>
+					</svg>
+				</a>
+			</div>
+		`;
+
 		let sliderHTML = '<div class="banner-slider">';
 		banners.forEach((banner, index) => {
+			const imageUrl = escapeHtml(banner.url);
 			sliderHTML += `
-				<div class="banner-slide" data-index="${index}">
-					<img src="${banner.url}" alt="${banner.alt || 'Banner ' + (index + 1)}">
+				<div class="banner-slide" data-index="${index}" style="background-image: url('${imageUrl}')">
+					<img src="${imageUrl}" alt="${escapeHtml(banner.alt || 'Banner ' + (index + 1))}">
 				</div>
 			`;
 		});
 		sliderHTML += '</div>';
+		sliderHTML += bannerSocialHTML;
 
 		if (settings.showArrows && hasMultipleBanners) {
 			sliderHTML += `
@@ -76,15 +115,33 @@
 			sliderHTML += '</div>';
 		}
 
-		if (settings.parallax) {
-			pageBanner.classList.add('parallax');
-		}
+		pageBanner.classList.remove('parallax');
 
 		pageBanner.innerHTML = sliderHTML;
 		pageBanner.style.display = 'block';
+		updateBannerAspect();
 
 		if (hasMultipleBanners) {
 			initSlider(settings);
+		}
+	}
+
+	function updateBannerAspect(index = 0) {
+		const images = pageBanner.querySelectorAll('.banner-slide img');
+		const image = images[index];
+		if (!image) return;
+
+		const setAspect = () => {
+			if (!image.naturalWidth || !image.naturalHeight) return;
+			const rawAspect = image.naturalWidth / image.naturalHeight;
+			const fittedAspect = Math.min(Math.max(rawAspect, 0.72), 3.2);
+			pageBanner.style.setProperty('--banner-aspect', fittedAspect.toFixed(4));
+		};
+
+		if (image.complete) {
+			setAspect();
+		} else {
+			image.addEventListener('load', setAspect, { once: true });
 		}
 	}
 
@@ -105,6 +162,7 @@
 
 			currentIndex = index;
 			slider.style.transform = `translateX(-${index * 100}%)`;
+			updateBannerAspect(index);
 
 			// Update dots
 			dots.forEach((dot, i) => {
@@ -144,21 +202,6 @@
 				startAutoPlay();
 			});
 		});
-
-		// Parallax effect
-		if (settings.parallax) {
-			window.addEventListener('scroll', () => {
-				const bannerRect = pageBanner.getBoundingClientRect();
-				if (bannerRect.bottom > 0 && bannerRect.top < window.innerHeight) {
-					const scrollPercent = bannerRect.top / window.innerHeight;
-					const translateY = scrollPercent * 50; // Parallax amount
-					const activeImg = slides[currentIndex]?.querySelector('img');
-					if (activeImg) {
-						activeImg.style.transform = `translateY(${translateY}px)`;
-					}
-				}
-			});
-		}
 
 		// Start autoplay
 		startAutoPlay();

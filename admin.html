@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
@@ -68,7 +68,10 @@
         .upload-area:hover { background: rgba(196,160,82,0.1); }
         .upload-area.dragover { background: rgba(196,160,82,0.2); }
         .upload-area.has-file { border-color: #4caf50; background: rgba(76,175,80,0.1); }
-        .preview-img { max-width: 200px; max-height: 150px; border-radius: 8px; margin-top: 10px; display: none; }
+        .banner-fit-note { margin-top: 10px; color: #aaa; font-size: 13px; line-height: 1.45; }
+        .preview-frame { width: min(100%, 520px); max-height: 58vh; margin: 12px auto 0; overflow: hidden; background: #111; border: 1px solid #444; border-radius: 8px; display: none; }
+        .preview-frame.show { display: flex; align-items: center; justify-content: center; }
+        .preview-img { width: 100%; max-height: 58vh; height: auto; object-fit: contain; display: block; }
         .preview-img.show { display: block; }
 
         .message { padding: 12px; border-radius: 6px; margin-top: 15px; display: none; }
@@ -85,13 +88,34 @@
         .modal-content { background: #2a2a2a; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; }
         .modal h3 { color: #c4a052; margin-bottom: 20px; }
         .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+        .edit-upload-area { padding: 24px; margin-bottom: 0; }
+        .edit-current-url { margin-top: 8px; color: #888; font-size: 12px; overflow-wrap: anywhere; }
+
+        @media (max-width: 640px) {
+            body { padding: 12px; }
+            .login-box { padding: 28px 20px; }
+            h1 { font-size: 1.55rem; margin-bottom: 20px; }
+            .status-bar { flex-wrap: wrap; align-items: stretch; }
+            .status-text { flex: 1 1 100%; }
+            .status-bar .btn { flex: 1 1 calc(50% - 5px); }
+            .card { padding: 16px; border-radius: 10px; }
+            .upload-area { padding: 26px 14px; }
+            .banner-item { align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+            .banner-item img { width: 96px; height: 64px; }
+            .banner-item .info { min-width: 0; flex: 1 1 calc(100% - 112px); }
+            .banner-item .name { overflow-wrap: anywhere; }
+            .banner-item .actions { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .banner-item .actions .btn { width: 100%; padding-left: 8px; padding-right: 8px; }
+            .modal-content { padding: 22px 16px; }
+            .modal-actions { display: grid; grid-template-columns: 1fr 1fr; }
+        }
     </style>
 </head>
 <body>
     <!-- Login Screen -->
     <div class="login-screen" id="loginScreen">
         <div class="login-box">
-            <div class="logo">🔐</div>
+            <div class="logo">柏</div>
             <h2>Admin Login</h2>
             <div class="login-group">
                 <label>Username</label>
@@ -101,7 +125,7 @@
                 <label>Password</label>
                 <div class="password-wrapper">
                     <input type="password" id="loginPassword" placeholder="Enter password">
-                    <button type="button" class="toggle-password" id="togglePassword" onclick="togglePasswordVisibility()">👁️</button>
+                    <button type="button" class="toggle-password" id="togglePassword" onclick="togglePasswordVisibility()">Show</button>
                 </div>
             </div>
             <button class="login-btn" id="loginBtn" onclick="handleLogin()">Login</button>
@@ -112,7 +136,7 @@
     <!-- Admin Panel -->
     <div class="admin-panel" id="adminPanel">
         <div class="container">
-            <h1>🎯 Banner Manager</h1>
+            <h1>識 Banner Manager</h1>
 
             <!-- Status Bar -->
             <div class="status-bar">
@@ -126,8 +150,11 @@
             <div class="card">
                 <h2>+ Add New Banner</h2>
                 <div class="upload-area" id="uploadArea">
-                    <div id="uploadText">📷 Click or drag image here</div>
-                    <img id="previewImage" class="preview-img" alt="Preview">
+                    <div id="uploadText">胴 Click or drag image here</div>
+                    <div id="previewFrame" class="preview-frame">
+                        <img id="previewImage" class="preview-img" alt="Preview">
+                    </div>
+                    <p class="banner-fit-note">Preview keeps the real image ratio. The website banner will center the image and resize it responsively without cropping.</p>
                 </div>
                 <input type="file" id="fileInput" accept="image/*" style="display:none;">
 
@@ -142,7 +169,7 @@
 
             <!-- Banner List -->
             <div class="card">
-                <h2>📋 Banner List</h2>
+                <h2>搭 Banner List</h2>
                 <div id="bannerList">
                     <div class="loading">Loading...</div>
                 </div>
@@ -153,15 +180,23 @@
     <!-- Edit Modal -->
     <div class="modal hidden" id="editModal">
         <div class="modal-content">
-            <h3>✏️ Edit Banner</h3>
+            <h3>笨擾ｸ・Edit Banner</h3>
             <input type="hidden" id="editId">
             <div class="form-group">
                 <label>Alt Text</label>
                 <input type="text" id="editAlt">
             </div>
             <div class="form-group">
-                <label>Image URL</label>
-                <input type="text" id="editUrl" readonly style="opacity: 0.6;">
+                <label>Banner Image</label>
+                <div class="upload-area edit-upload-area" id="editUploadArea">
+                    <div id="editUploadText">Click or drag new image here</div>
+                    <div id="editPreviewFrame" class="preview-frame show">
+                        <img id="editPreviewImage" class="preview-img" alt="Current banner preview">
+                    </div>
+                    <p class="banner-fit-note">Leave unchanged if you only want to edit the alt text.</p>
+                    <div class="edit-current-url" id="editCurrentUrl"></div>
+                </div>
+                <input type="file" id="editFileInput" accept="image/*" style="display:none;">
             </div>
             <div class="modal-actions">
                 <button class="btn btn-danger" id="cancelEditBtn">Cancel</button>
@@ -184,6 +219,7 @@
         const refreshBtn = document.getElementById('refreshBtn');
         const uploadArea = document.getElementById('uploadArea');
         const uploadText = document.getElementById('uploadText');
+        const previewFrame = document.getElementById('previewFrame');
         const previewImage = document.getElementById('previewImage');
         const fileInput = document.getElementById('fileInput');
         const altInput = document.getElementById('altInput');
@@ -193,7 +229,12 @@
         const editModal = document.getElementById('editModal');
         const editId = document.getElementById('editId');
         const editAlt = document.getElementById('editAlt');
-        const editUrl = document.getElementById('editUrl');
+        const editUploadArea = document.getElementById('editUploadArea');
+        const editUploadText = document.getElementById('editUploadText');
+        const editPreviewFrame = document.getElementById('editPreviewFrame');
+        const editPreviewImage = document.getElementById('editPreviewImage');
+        const editCurrentUrl = document.getElementById('editCurrentUrl');
+        const editFileInput = document.getElementById('editFileInput');
         const cancelEditBtn = document.getElementById('cancelEditBtn');
         const saveEditBtn = document.getElementById('saveEditBtn');
 
@@ -202,6 +243,8 @@
 
         // State
         let selectedFile = null;
+        let editSelectedFile = null;
+        let editOriginalUrl = '';
         let isLoggedIn = false;
 
         // Check if already logged in
@@ -296,10 +339,10 @@
                 });
                 if (!response.ok) throw new Error('Status: ' + response.status);
                 statusDot.classList.add('online');
-                statusText.textContent = '✓ Connected to Supabase';
+                statusText.textContent = '笨・Connected to Supabase';
                 return true;
             } catch (error) {
-                statusText.textContent = '✗ Connection failed: ' + error.message;
+                statusText.textContent = '笨・Connection failed: ' + error.message;
                 return false;
             }
         }
@@ -328,36 +371,75 @@
                 bannerList.innerHTML = '<div class="empty">No banners yet. Add one above!</div>';
                 return;
             }
+            const escapeHtml = (value) => String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+
             bannerList.innerHTML = banners.map(b => `
                 <div class="banner-item ${b.active ? '' : 'idle'}">
-                    <img src="${b.url}" alt="${b.alt || ''}">
+                    <img src="${escapeHtml(b.url)}" alt="${escapeHtml(b.alt || '')}">
                     <div class="info">
-                        <div class="name">${b.alt || '(no alt)'}</div>
-                        <div class="status ${b.active ? 'active' : ''}">${b.active ? '● Active' : '○ Inactive'}</div>
+                        <div class="name">${escapeHtml(b.alt || '(no alt)')}</div>
+                        <div class="status ${b.active ? 'active' : ''}">${b.active ? '笳・Active' : '笳・Inactive'}</div>
                     </div>
                     <div class="actions">
-                        <button class="btn btn-primary btn-small" onclick="editBanner('${b.id}', '${b.alt || ''}', '${b.url}')">Edit</button>
-                        <button class="btn btn-small ${b.active ? '' : 'btn-primary'}" onclick="toggleBanner('${b.id}', ${!b.active})">${b.active ? 'Disable' : 'Enable'}</button>
-                        <button class="btn btn-danger btn-small" onclick="deleteBanner('${b.id}')">Delete</button>
+                        <button class="btn btn-primary btn-small" data-action="edit" data-id="${escapeHtml(b.id)}" data-alt="${escapeHtml(b.alt || '')}" data-url="${escapeHtml(b.url)}">Edit</button>
+                        <button class="btn btn-small ${b.active ? '' : 'btn-primary'}" data-action="toggle" data-id="${escapeHtml(b.id)}" data-active="${String(!b.active)}">${b.active ? 'Disable' : 'Enable'}</button>
+                        <button class="btn btn-danger btn-small" data-action="delete" data-id="${escapeHtml(b.id)}">Delete</button>
                     </div>
                 </div>
             `).join('');
         }
 
+        bannerList.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-action]');
+            if (!button) return;
+            const action = button.dataset.action;
+            if (action === 'edit') {
+                editBanner(button.dataset.id, button.dataset.alt || '', button.dataset.url || '');
+            } else if (action === 'toggle') {
+                toggleBanner(button.dataset.id, button.dataset.active === 'true');
+            } else if (action === 'delete') {
+                deleteBanner(button.dataset.id);
+            }
+        });
+
         // Edit banner
         window.editBanner = function(id, alt, url) {
             editId.value = id;
             editAlt.value = alt;
-            editUrl.value = url;
+            editOriginalUrl = url;
+            editSelectedFile = null;
+            editFileInput.value = '';
+            editPreviewImage.src = url;
+            editPreviewFrame.classList.add('show');
+            editUploadArea.classList.remove('has-file', 'dragover');
+            editUploadText.textContent = 'Click or drag new image here';
+            editCurrentUrl.textContent = url ? 'Current image: ' + url : '';
             editModal.classList.remove('hidden');
         };
 
-        cancelEditBtn.onclick = () => editModal.classList.add('hidden');
+        cancelEditBtn.onclick = () => {
+            editModal.classList.add('hidden');
+            editSelectedFile = null;
+            editFileInput.value = '';
+        };
 
         saveEditBtn.onclick = async () => {
             const id = editId.value;
             const alt = editAlt.value;
+            saveEditBtn.disabled = true;
+            saveEditBtn.textContent = editSelectedFile ? 'Uploading...' : 'Saving...';
             try {
+                const updates = { alt };
+                if (editSelectedFile) {
+                    const uploadData = await uploadBannerFile(editSelectedFile);
+                    updates.url = getResponsiveCloudinaryUrl(uploadData.secure_url);
+                }
+
                 const response = await fetch(`${supabaseUrl}/rest/v1/banners?id=eq.${id}`, {
                     method: 'PATCH',
                     headers: {
@@ -366,14 +448,19 @@
                         'Authorization': `Bearer ${supabaseSecretKey || supabaseKey}`,
                         'Prefer': 'return=representation'
                     },
-                    body: JSON.stringify({ alt })
+                    body: JSON.stringify(updates)
                 });
                 if (!response.ok) throw new Error('Update failed');
                 editModal.classList.add('hidden');
+                editSelectedFile = null;
+                editFileInput.value = '';
                 showMessage('Banner updated!', 'success');
                 loadBanners();
             } catch (error) {
                 showMessage('Error: ' + error.message, 'error');
+            } finally {
+                saveEditBtn.disabled = false;
+                saveEditBtn.textContent = 'Save';
             }
         };
 
@@ -416,6 +503,25 @@
             }
         };
 
+        function getResponsiveCloudinaryUrl(url) {
+            if (!url || !url.includes('/upload/')) return url;
+            return url.replace('/upload/', '/upload/f_auto,q_auto,c_fit,w_1800,h_1000/');
+        }
+
+        async function uploadBannerFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', cloudinaryConfig.uploadPreset);
+            formData.append('folder', 'kenbarbershop/banners');
+
+            const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`, {
+                method: 'POST',
+                body: formData
+            });
+            if (!uploadRes.ok) throw new Error('Upload failed');
+            return uploadRes.json();
+        }
+
         // File selection
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
@@ -423,9 +529,9 @@
             if (file.size > 10 * 1024 * 1024) { showMessage('File too large (max 10MB)', 'error'); return; }
             selectedFile = file;
             previewImage.src = URL.createObjectURL(file);
-            previewImage.classList.add('show');
+            previewFrame.classList.add('show');
             uploadArea.classList.add('has-file');
-            uploadText.textContent = '📷 ' + file.name;
+            uploadText.textContent = '胴 ' + file.name;
             uploadBtn.disabled = false;
         });
 
@@ -442,6 +548,30 @@
             }
         });
 
+        editFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (file.size > 10 * 1024 * 1024) { showMessage('File too large (max 10MB)', 'error'); return; }
+            editSelectedFile = file;
+            editPreviewImage.src = URL.createObjectURL(file);
+            editPreviewFrame.classList.add('show');
+            editUploadArea.classList.add('has-file');
+            editUploadText.textContent = file.name;
+            editCurrentUrl.textContent = 'New image selected. Save to replace the banner image.';
+        });
+
+        editUploadArea.addEventListener('click', () => editFileInput.click());
+        editUploadArea.addEventListener('dragover', (e) => { e.preventDefault(); editUploadArea.classList.add('dragover'); });
+        editUploadArea.addEventListener('dragleave', () => editUploadArea.classList.remove('dragover'));
+        editUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            editUploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files[0]) {
+                editFileInput.files = e.dataTransfer.files;
+                editFileInput.dispatchEvent(new Event('change'));
+            }
+        });
+
         // Upload
         uploadBtn.onclick = async () => {
             if (!selectedFile) return;
@@ -450,17 +580,7 @@
 
             try {
                 // Upload to Cloudinary
-                const formData = new FormData();
-                formData.append('file', selectedFile);
-                formData.append('upload_preset', cloudinaryConfig.uploadPreset);
-                formData.append('folder', 'kenbarbershop/banners');
-
-                const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`, {
-                    method: 'POST',
-                    body: formData
-                });
-                if (!uploadRes.ok) throw new Error('Upload failed');
-                const uploadData = await uploadRes.json();
+                const uploadData = await uploadBannerFile(selectedFile);
 
                 // Get current banners count for sort_order
                 const countRes = await fetch(`${supabaseUrl}/rest/v1/banners?select=id`, {
@@ -473,7 +593,7 @@
 
                 // Save to Supabase
                 const newBanner = {
-                    url: uploadData.secure_url,
+                    url: getResponsiveCloudinaryUrl(uploadData.secure_url),
                     alt: altInput.value || 'Banner',
                     active: true,
                     sort_order: (countData?.length || 0) + 1
@@ -493,10 +613,10 @@
 
                 // Reset
                 selectedFile = null;
-                previewImage.classList.remove('show');
+                previewFrame.classList.remove('show');
                 previewImage.src = '';
                 uploadArea.classList.remove('has-file');
-                uploadText.textContent = '📷 Click or drag image here';
+                uploadText.textContent = '胴 Click or drag image here';
                 altInput.value = '';
                 fileInput.value = '';
                 uploadBtn.disabled = true;
@@ -506,7 +626,7 @@
             } catch (error) {
                 showMessage('Error: ' + error.message, 'error');
             } finally {
-                uploadBtn.disabled = false;
+                uploadBtn.disabled = !selectedFile;
                 uploadBtn.textContent = 'Upload Banner';
             }
         };
@@ -529,13 +649,12 @@
             const toggleBtn = document.getElementById('togglePassword');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                toggleBtn.textContent = '🙈';
+                toggleBtn.textContent = 'Hide';
             } else {
                 passwordInput.type = 'password';
-                toggleBtn.textContent = '👁️';
+                toggleBtn.textContent = 'Show';
             }
         }
-
         // Enter key for login
         loginPassword.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') handleLogin();
@@ -546,3 +665,4 @@
     </script>
 </body>
 </html>
+

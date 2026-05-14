@@ -13,7 +13,7 @@ const SETTINGS_KEY = 'kenbarbershop_banner_settings';
 const defaultSettings = {
     autoSlide: true,
     slideInterval: 5,
-    parallax: true,
+    parallax: false,
     showArrows: true,
     showDots: true
 };
