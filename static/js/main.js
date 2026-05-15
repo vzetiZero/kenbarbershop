@@ -938,6 +938,29 @@
 		link.setAttribute('rel', 'noopener noreferrer');
 	});
 
+	const heroReserveCta = document.querySelector('.elementor-45 .elementor-element-f1bbaa6 .elementor-element-404ef38');
+	let heroReservePlaceholder = null;
+
+	function syncHeroReserveCta() {
+		if (!heroReserveCta) return;
+		const shouldFloat = window.matchMedia('(max-width: 767px)').matches;
+
+		if (shouldFloat && heroReserveCta.parentElement !== document.body) {
+			heroReservePlaceholder = heroReservePlaceholder || document.createComment('hero reserve cta placeholder');
+			heroReserveCta.parentNode.insertBefore(heroReservePlaceholder, heroReserveCta);
+			document.body.appendChild(heroReserveCta);
+			heroReserveCta.classList.add('is-floating-cta');
+		} else if (!shouldFloat && heroReservePlaceholder?.parentNode) {
+			heroReservePlaceholder.parentNode.insertBefore(heroReserveCta, heroReservePlaceholder);
+			heroReserveCta.classList.remove('is-floating-cta');
+			heroReservePlaceholder.remove();
+			heroReservePlaceholder = null;
+		}
+	}
+
+	syncHeroReserveCta();
+	window.addEventListener('resize', syncHeroReserveCta);
+
 	lightbox.addEventListener('click', (event) => {
 		if (event.target === lightbox || event.target === lightboxClose) {
 			closeLightbox();
