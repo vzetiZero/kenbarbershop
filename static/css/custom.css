@@ -3858,3 +3858,50 @@ textarea,
 	grid-row: auto !important;
 	aspect-ratio: 1 / 1 !important;
 }
+
+/* Mobile header booking button: keep it visible above the banner and overlays. */
+@media (max-width: 767px) {
+	.elementor-location-header,
+	.elementor-location-header .elementor-element-0099a94 {
+		position: sticky !important;
+		top: 0 !important;
+		z-index: 3000 !important;
+		overflow: visible !important;
+	}
+
+	.elementor-location-header .elementor-element-0099a94 > .e-con-inner {
+		display: grid !important;
+		grid-template-columns: minmax(72px, 0.34fr) minmax(150px, 0.66fr) !important;
+		align-items: center !important;
+		gap: 8px !important;
+		width: 100% !important;
+		min-height: 86px !important;
+		overflow: visible !important;
+	}
+
+	.elementor-location-header .elementor-element-ab58b41,
+	.elementor-location-header .elementor-element-f89ca3b {
+		position: relative !important;
+		z-index: 3002 !important;
+		display: flex !important;
+		justify-content: flex-end !important;
+		align-items: center !important;
+		min-width: 0 !important;
+		overflow: visible !important;
+	}
+
+	.elementor-location-header .elementor-element-f89ca3b .elementor-button {
+		position: relative !important;
+		z-index: 3003 !important;
+		display: inline-flex !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+		width: auto !important;
+		min-width: 138px !important;
+		max-width: calc(100vw - 128px) !important;
+		min-height: 44px !important;
+		padding: 12px 22px !important;
+		white-space: nowrap !important;
+		box-shadow: 0 12px 28px rgba(12, 10, 8, 0.22) !important;
+	}
+}
