@@ -3866,6 +3866,28 @@ textarea,
 	aspect-ratio: 1 / 1 !important;
 }
 
+/* Keep photo galleries the same width as the video gallery on desktop and mobile. */
+.elementor-45 .elementor-element-interior-gallery,
+.elementor-45 .elementor-element-977a217,
+.elementor-45 .elementor-element-video-grid,
+.elementor-45 .static-interior-gallery,
+.elementor-45 .elementor-element-977a217 .elementor-gallery__container,
+.elementor-45 .static-video-gallery {
+	width: 100% !important;
+	max-width: none !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+@media (max-width: 900px) {
+	.elementor-45 .static-interior-gallery,
+	.elementor-45 .elementor-element-977a217 .elementor-gallery__container,
+	.elementor-45 .static-video-gallery {
+		width: 100% !important;
+		max-width: none !important;
+	}
+}
+
 /* Mobile header booking button: keep it visible above the banner and overlays. */
 @media (max-width: 767px) {
 	.elementor-location-header,
