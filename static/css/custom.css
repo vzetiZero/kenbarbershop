@@ -4041,3 +4041,56 @@ textarea,
 		animation: none !important;
 	}
 }
+
+/* Align gallery/contact content width with the price section columns. */
+.elementor-45 {
+	--site-wide-content-width: 1360px;
+}
+
+.elementor-45 .elementor-element-d27aab3 {
+	width: 100% !important;
+	max-width: none !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.elementor-45 .elementor-element-d27aab3 > .e-con-inner {
+	width: 100% !important;
+	max-width: none !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.elementor-45 .elementor-element-b0407f5 > .e-con-inner,
+.elementor-45 .elementor-element-295f765 > .e-con-inner,
+.elementor-45 .elementor-element-6e84318 > .e-con-inner,
+.elementor-45 .elementor-element-video-gallery > .e-con-inner {
+	width: min(calc(100% - (var(--section-pad-x) * 2)), var(--site-wide-content-width)) !important;
+	max-width: var(--site-wide-content-width) !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.elementor-45 .elementor-element-interior-gallery,
+.elementor-45 .elementor-element-977a217,
+.elementor-45 .elementor-element-video-grid,
+.elementor-45 .static-interior-gallery,
+.elementor-45 .elementor-element-977a217 .elementor-gallery__container,
+.elementor-45 .static-video-gallery {
+	width: 100% !important;
+	max-width: none !important;
+}
+
+.elementor-45 .elementor-element-1e85c06 {
+	padding-left: var(--section-pad-x) !important;
+	padding-right: var(--section-pad-x) !important;
+}
+
+.elementor-45 .elementor-element-d85b9cb {
+	width: min(100%, var(--site-wide-content-width)) !important;
+	max-width: var(--site-wide-content-width) !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
