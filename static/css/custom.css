@@ -606,9 +606,16 @@ textarea {
 
 @media (max-width: 767px) {
 	.lang-switcher {
-		top: 16px;
-		right: 16px;
-		bottom: auto;
+		display: block !important;
+		position: fixed !important;
+		top: max(12px, env(safe-area-inset-top)) !important;
+		right: 12px !important;
+		bottom: auto !important;
+		left: auto !important;
+		z-index: 2147483001 !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+		pointer-events: auto !important;
 	}
 
 	.lang-menu {
@@ -3926,14 +3933,15 @@ textarea,
 		position: fixed !important;
 		left: 50% !important;
 		right: auto !important;
-		bottom: max(18px, env(safe-area-inset-bottom)) !important;
+		top: 50% !important;
+		bottom: auto !important;
 		z-index: 3500 !important;
 		display: flex !important;
 		justify-content: center !important;
 		width: auto !important;
 		margin: 0 !important;
 		pointer-events: auto !important;
-		transform: translate3d(-50%, 0, 0) !important;
+		transform: translate3d(-50%, -50%, 0) !important;
 		animation: mobileReserveFloatIn 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both !important;
 		will-change: transform, opacity;
 	}
@@ -3942,7 +3950,8 @@ textarea,
 		position: fixed !important;
 		left: 50% !important;
 		right: auto !important;
-		bottom: max(18px, env(safe-area-inset-bottom)) !important;
+		top: 50% !important;
+		bottom: auto !important;
 		z-index: 2147483000 !important;
 		display: flex !important;
 		justify-content: center !important;
@@ -3951,7 +3960,7 @@ textarea,
 		pointer-events: auto !important;
 		opacity: 1 !important;
 		visibility: visible !important;
-		transform: translate3d(-50%, 0, 0) !important;
+		transform: translate3d(-50%, -50%, 0) !important;
 		animation: mobileReserveFloatIn 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both !important;
 		will-change: transform, opacity;
 	}
@@ -3992,11 +4001,11 @@ textarea,
 @keyframes mobileReserveFloatIn {
 	from {
 		opacity: 0;
-		transform: translate3d(-50%, 18px, 0) scale(0.96);
+		transform: translate3d(-50%, calc(-50% + 18px), 0) scale(0.96);
 	}
 	to {
 		opacity: 1;
-		transform: translate3d(-50%, 0, 0) scale(1);
+		transform: translate3d(-50%, -50%, 0) scale(1);
 	}
 }
 
