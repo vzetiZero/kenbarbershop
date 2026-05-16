@@ -4117,3 +4117,417 @@ textarea,
 	margin-left: auto !important;
 	margin-right: auto !important;
 }
+
+/* Compact mobile pass: reduce long phone scrolling without changing desktop. */
+@media (max-width: 767px) {
+	body {
+		line-height: 1.38;
+		padding-bottom: 0 !important;
+	}
+
+	.elementor-45 {
+		--section-space: 24px;
+		--section-space-sm: 18px;
+		--section-pad-x: 12px;
+	}
+
+	.elementor-location-header .elementor-element-0099a94 > .e-con-inner {
+		min-height: 68px !important;
+		padding-top: 4px !important;
+		padding-bottom: 4px !important;
+	}
+
+	.elementor-element-6651ae5 {
+		width: 58px !important;
+		max-width: 58px !important;
+		flex-basis: 58px !important;
+	}
+
+	.elementor-element-6651ae5 img {
+		width: 50px !important;
+		max-width: 50px !important;
+	}
+
+	.elementor-location-header .elementor-element-f89ca3b .elementor-button {
+		min-width: 118px !important;
+		min-height: 38px !important;
+		padding: 10px 14px !important;
+		font-size: 14px !important;
+	}
+
+	.page-banner {
+		width: calc(100% - 16px) !important;
+		height: clamp(190px, 46vh, 360px) !important;
+		max-height: calc(100svh - 96px) !important;
+		margin: 8px auto 12px !important;
+		border-radius: 10px !important;
+	}
+
+	.page-banner .banner-social-links {
+		right: 8px;
+		bottom: 8px;
+		gap: 6px;
+		padding: 6px;
+	}
+
+	.banner-social-links__item {
+		width: 34px;
+		height: 34px;
+	}
+
+	.elementor-45 .elementor-element-ea8e286,
+	.elementor-45 .elementor-element-ecb3683 {
+		padding: 10px 10px 14px !important;
+	}
+
+	.elementor-45 .elementor-element-f1bbaa6 {
+		min-height: auto !important;
+		padding: 34px 14px 38px !important;
+		border-radius: 12px !important;
+	}
+
+	.elementor-45 .elementor-element-c551ffd img {
+		width: clamp(82px, 25vw, 112px) !important;
+		margin-bottom: 14px !important;
+	}
+
+	.elementor-45 .elementor-element-3b1718c .elementor-heading-title {
+		font-size: clamp(28px, 8.2vw, 38px) !important;
+		line-height: 1.02 !important;
+	}
+
+	.elementor-45 .elementor-element-6854eb2 {
+		margin-top: 14px !important;
+	}
+
+	.elementor-45 .elementor-element-ecb3683 .elementor-element-d42dcc5 {
+		font-size: clamp(17px, 4.8vw, 22px) !important;
+		line-height: 1.18 !important;
+	}
+
+	.elementor-45 .elementor-element-b95ce80 a {
+		font-size: clamp(22px, 6.2vw, 28px) !important;
+	}
+
+	.elementor-45 .elementor-element-f1bbaa6 .elementor-element-404ef38 .elementor-button,
+	body > .elementor-element-404ef38.is-floating-cta .elementor-button {
+		min-width: 134px !important;
+		min-height: 42px !important;
+		padding: 11px 22px !important;
+		font-size: 15px !important;
+	}
+
+	.elementor-45 .elementor-element-840a3a1 {
+		min-height: 300px !important;
+		padding: 26px 12px !important;
+	}
+
+	.elementor-45 .elementor-element-c59074b {
+		padding: 12px 14px !important;
+	}
+
+	.elementor-45 .elementor-element-c59074b .elementor-heading-title {
+		font-size: clamp(20px, 6vw, 27px) !important;
+		line-height: 1.08 !important;
+	}
+
+	.elementor-45 .elementor-element-74d3523 {
+		width: min(100%, 238px) !important;
+		padding: 10px 12px !important;
+	}
+
+	.elementor-45 .elementor-element-3283a78,
+	.elementor-45 .elementor-element-b48375f,
+	.elementor-45 .elementor-element-4d0a8e7,
+	.elementor-45 .elementor-element-b0407f5,
+	.elementor-45 .elementor-element-295f765,
+	.elementor-45 .elementor-element-6e84318,
+	.elementor-45 .elementor-element-video-gallery,
+	.elementor-45 .elementor-element-1e85c06 {
+		padding-top: 16px !important;
+		padding-bottom: 16px !important;
+	}
+
+	.elementor-45 .elementor-element-b48375f {
+		padding-top: 18px !important;
+		padding-bottom: 18px !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 {
+		padding: 18px 14px !important;
+		border-radius: 14px !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-cbdb867 .elementor-heading-title {
+		font-size: 30px !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-8a77a00 {
+		padding: 12px 0 !important;
+		column-gap: 10px !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-2ae0127 h4 {
+		margin-bottom: 4px !important;
+		font-size: 18px !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-2ae0127 p {
+		font-size: 12px !important;
+		line-height: 1.25 !important;
+	}
+
+	.elementor-45 .elementor-element-c5de495 .elementor-element-cdf1a9c h5 {
+		font-size: 21px !important;
+	}
+
+	.elementor-45 .elementor-element-4d0a8e7 > .e-con-inner {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		row-gap: 14px !important;
+		column-gap: 10px !important;
+	}
+
+	.elementor-45 .elementor-element-4d0a8e7 .elementor-widget-text-editor {
+		width: 100% !important;
+	}
+
+	.elementor-element-4d0a8e7 .elementor-heading-title {
+		font-size: 18px !important;
+	}
+
+	.elementor-element-4d0a8e7 .elementor-widget-text-editor p {
+		font-size: 12px !important;
+		line-height: 1.25 !important;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-87772ff img,
+	.elementor-45 .elementor-element.elementor-element-payment-icon img,
+	.elementor-45 .elementor-element.elementor-element-9ff0f97 img,
+	.elementor-45 .elementor-element.elementor-element-53299c1 img,
+	.elementor-45 .elementor-element.elementor-element-ebbe6a0 img {
+		width: 36px !important;
+		max-width: 36px !important;
+	}
+
+	.elementor-element-b0407f5 .elementor-heading-title {
+		font-size: 28px !important;
+	}
+
+	.elementor-45 .static-interior-gallery,
+	.elementor-45 .elementor-element-977a217 .elementor-gallery__container,
+	.elementor-45 .static-video-gallery {
+		gap: 6px !important;
+	}
+
+	.elementor-45 .static-video-gallery {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+
+	.static-video-gallery__item {
+		aspect-ratio: 4 / 5 !important;
+		max-height: none !important;
+		object-fit: cover !important;
+	}
+
+	.elementor-45 .elementor-element-1e85c06 {
+		padding-top: 18px !important;
+		padding-bottom: 20px !important;
+	}
+
+	.elementor-45 .elementor-element-d85b9cb {
+		padding: 18px 14px !important;
+		border-radius: 14px !important;
+	}
+
+	.elementor-45 .elementor-element-d85b9cb .elementor-element-e7b6e81 .elementor-heading-title {
+		font-size: clamp(28px, 8.4vw, 38px) !important;
+	}
+
+	.elementor-45 .elementor-element-d85b9cb .elementor-element-98d20e7 {
+		gap: 14px !important;
+		padding: 16px !important;
+		border-radius: 14px !important;
+	}
+
+	.elementor-45 .elementor-element-d85b9cb .elementor-element-38a3bfd p {
+		margin-bottom: 10px !important;
+		font-size: 13px !important;
+		line-height: 1.4 !important;
+	}
+
+	.elementor-45 .elementor-element-d85b9cb .elementor-element-38a3bfd .contact-payment-notice {
+		margin-bottom: 14px !important;
+	}
+
+	.elementor-45 .elementor-element-d85b9cb .elementor-element-05a69d1 {
+		min-height: 160px !important;
+	}
+
+	.elementor-45 .elementor-element-d85b9cb .elementor-custom-embed iframe {
+		min-height: 220px !important;
+		height: 220px !important;
+	}
+
+	.elementor-element-3f740f9 {
+		min-height: 0 !important;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-5281c0e {
+		row-gap: 18px !important;
+		padding: 18px 14px 24px !important;
+		border-radius: 0 !important;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-f60635c {
+		grid-template-columns: repeat(6, 34px) !important;
+		gap: 8px !important;
+		width: max-content !important;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-f60635c > .elementor-element,
+	.elementor-73 .elementor-element.elementor-element-f60635c .elementor-widget,
+	.elementor-73 .elementor-element.elementor-element-f60635c .elementor-widget-container,
+	.elementor-73 .elementor-element.elementor-element-f60635c img,
+	.elementor-73 .elementor-element.elementor-element-f60635c .language-flag {
+		width: 34px !important;
+		min-width: 34px !important;
+		max-width: 34px !important;
+		height: 34px !important;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-9d81c74 {
+		font-size: 16px !important;
+	}
+
+	.elementor-73 .elementor-element.elementor-element-2195b9d {
+		padding: 0 !important;
+	}
+
+	.elementor-form textarea {
+		min-height: 96px !important;
+		height: 96px !important;
+	}
+
+	.elementor-field,
+	.elementor-field-textual {
+		min-height: 40px !important;
+		padding: 9px 12px !important;
+	}
+
+	.elementor-73 .elementor-element-b5988ed {
+		padding: 20px 14px !important;
+	}
+
+	.ken-footer-summary {
+		gap: 10px;
+		margin-bottom: 14px;
+		padding-bottom: 14px;
+	}
+
+	.ken-footer-summary__brand {
+		font-size: 20px;
+	}
+}
+
+/* Phone video gallery: 2 videos per row, matching the photo grid. */
+@media (max-width: 767px) {
+	.elementor-45 .elementor-element-video-gallery > .e-con-inner {
+		width: 100% !important;
+		max-width: none !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		align-items: stretch !important;
+	}
+
+	.elementor-45 .elementor-element-video-grid,
+	.elementor-45 .static-video-gallery {
+		display: grid !important;
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		gap: 6px !important;
+		width: 100% !important;
+		max-width: none !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	.elementor-45 .elementor-element-video-grid {
+		--width: 100% !important;
+		flex: 0 0 100% !important;
+		align-self: stretch !important;
+	}
+
+	.elementor-45 .static-video-gallery__item {
+		display: block !important;
+		width: 100% !important;
+		height: auto !important;
+		aspect-ratio: 1 / 1 !important;
+		max-height: none !important;
+		object-fit: cover !important;
+	}
+}
+
+/* Phone feature grid: center the fifth item under the two-column rows. */
+@media (max-width: 767px) {
+	.elementor-45 .elementor-element-4d0a8e7 > .e-con-inner {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		justify-items: center !important;
+	}
+
+	.elementor-45 .elementor-element.elementor-element-4a54570 {
+		grid-column: 1 / -1 !important;
+		width: calc((100% - 10px) / 2) !important;
+		max-width: 180px !important;
+		justify-self: center !important;
+	}
+}
+
+/* Final phone video width fix: make video grid use the same full row width as photos. */
+@media (max-width: 767px) {
+	.elementor-45 .elementor-element-video-gallery {
+		display: block !important;
+		width: 100% !important;
+		max-width: none !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
+	.elementor-45 .elementor-element-video-gallery > .e-con-inner {
+		display: block !important;
+		width: 100% !important;
+		max-width: none !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	.elementor-45 .elementor-element-video-grid,
+	.elementor-45 .elementor-element-video-grid .elementor-widget-container,
+	.elementor-45 .static-video-gallery {
+		display: grid !important;
+		width: 100% !important;
+		max-width: none !important;
+		min-width: 0 !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	.elementor-45 .elementor-element-video-grid,
+	.elementor-45 .elementor-element-video-grid .elementor-widget-container {
+		display: block !important;
+	}
+
+	.elementor-45 .static-video-gallery {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		gap: 6px !important;
+	}
+
+	.elementor-45 .static-video-gallery__item {
+		width: 100% !important;
+		min-width: 0 !important;
+		max-width: none !important;
+		aspect-ratio: 1 / 1 !important;
+		height: auto !important;
+		object-fit: cover !important;
+	}
+}
